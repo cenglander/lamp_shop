@@ -30,7 +30,6 @@ public class Order {
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "order")
 	//TODO  nullable = false?
 	private List<OrderLine> orderLines;
-
 	
 	public void addOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
