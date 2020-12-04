@@ -1,5 +1,6 @@
 package lamp_shop;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,18 +25,20 @@ public class Order {
 
 	private boolean completed;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer", nullable = false)
 	private User customer;
-	
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "order")
-	//TODO  nullable = false?
-	private List<OrderLine> orderLines;
+
+	// TODO nullable = false?
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_id", nullable = false)
+	private List<OrderLine> orderLines = new ArrayList<>();
+
 	
 	public void addOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -61,7 +65,7 @@ public class Order {
 
 	public List<OrderLine> getOrderLines() {
 		return orderLines;
-	}	
+	}
 
 	@Override
 	public String toString() {

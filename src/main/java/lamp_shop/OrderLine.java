@@ -16,9 +16,8 @@ public class OrderLine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO ska det vara identity eller auto?
 	private int id;
-
 	private int quantity;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product", nullable = false)
 	private Product product;
@@ -38,7 +37,7 @@ public class OrderLine {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public Product getProduct() {
 		return product;
 	}
