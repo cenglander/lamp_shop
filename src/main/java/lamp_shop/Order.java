@@ -1,5 +1,6 @@
 package lamp_shop;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +23,15 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO
 	private int id;
+	
+	private LocalDateTime order_date;
 
 	private boolean completed;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer", nullable = false)
-	private User customer;
-
-	// TODO nullable = false?
+	private User customer;	
+	
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_id", nullable = false)
 	private List<OrderLine> orderLines = new ArrayList<>();
@@ -45,6 +47,18 @@ public class Order {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public LocalDateTime getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(LocalDateTime order_date) {
+		this.order_date = order_date;
+	}
+
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
 	}
 
 	public boolean isCompleted() {
@@ -69,7 +83,8 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", completed=" + completed + ", customer=" + customer + "]";
+		return "Order [id=" + id + ", order_date=" + order_date + ", completed=" + completed + ", customer=" + customer
+				+ ", orderLines=" + orderLines + "]";
 	}
-
+	
 }

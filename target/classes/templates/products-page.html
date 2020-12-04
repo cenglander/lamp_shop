@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Products</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<h3>Product List</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Category</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="r : ${products}">
+				<td th:text="${r.getId()}" />
+				<td th:text="${r.getName()}" />
+				<td th:text="${r.getPrice()}" />
+				<td th:text="${r.getCategory()}" />
+		</tbody>
+	</table>
+	
+	<!-- <a href="/moo/web/play">Back to game</a> -->
+</body>
+
+</html>

@@ -9,10 +9,19 @@ import org.springframework.web.context.annotation.SessionScope;
 @Service
 @SessionScope
 public class LampShopService {
+	
 	@Autowired
 	ProductRepository productRepository;
-	public List<Product> getAllProducts(){
-		return productRepository.findAll();
+	
+	@Autowired
+	OrderRepository orderRepository;
+	
+//	public List<Product> getAllProducts(){
+//		return productRepository.findAll();
+//	}
+	
+	public List<Order> getAllOrders() {
+		return orderRepository.findAll();
 	}
 
 }

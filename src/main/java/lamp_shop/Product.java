@@ -16,9 +16,17 @@ public class Product {
 
 	private String name;
 
-	private double price;
+	private Double price;
 
 	private String category; // TODO enum?
+
+	public Product() { }
+	
+	public Product(String name, Double price, String category) {
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
 
 	public int getId() {
 		return id;
@@ -36,11 +44,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
