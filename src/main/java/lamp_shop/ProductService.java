@@ -11,8 +11,12 @@ public class ProductService {
 	@Autowired
 	ProductRepository productRepository;
 	
-	public void createProduct(String name, double price, String category) {
-		Product product = new Product(name, price, category);
+//	public void createProduct(String name, double price, String category) {
+//		Product product = new Product(name, price, category);
+//		productRepository.save(product);
+//	}
+	
+	public void createProduct(Product product) {
 		productRepository.save(product);
 	}
 	

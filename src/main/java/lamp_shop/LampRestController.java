@@ -31,12 +31,13 @@ public class LampRestController {
 	}
 	
 	@PostMapping("/product/add")
-	public ResponseEntity<List> createProduct(@RequestBody String name, Double price,  String category) {
+	public ResponseEntity<List> createProduct(@RequestBody Product product) {
+//		public ResponseEntity<List> createProduct(@RequestBody String name, Double price,  String category) {
 		// TODO problem med raden ovan, kolla upp hur @RequestBody eller annat ska användas här
-		System.out.println(name);
-		System.out.println(price);
-		System.out.println(category);
-		productService.createProduct(name, price, category);
+		System.out.println(product.getName());
+		System.out.println(product.getPrice());
+		System.out.println(product.getCategory());
+		productService.createProduct(product);
 		return ResponseEntity.accepted().body(productService.getAllProducts());
 	}
 	
