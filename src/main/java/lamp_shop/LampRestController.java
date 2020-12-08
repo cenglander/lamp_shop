@@ -17,29 +17,24 @@ public class LampRestController {
 	@Autowired
 	LampShopService lampShopService;
 	
-	@Autowired
-	ProductService productService;
-
-	@GetMapping("/products")
-	public ResponseEntity<List<Product>> getAllProducts() {
-		return ResponseEntity.accepted().body(productService.getAllProducts());
-	}
+//	@Autowired
+//	ProductService productService;
+//
+//	@GetMapping("/products")
+//	public ResponseEntity<List<Product>> getAllProducts() {
+//		return ResponseEntity.accepted().body(productService.getAllProducts());
+//	}
 	
 	@GetMapping("/orders")
 	public ResponseEntity<List<Order>> getAllOrders() {
 		return ResponseEntity.accepted().body(lampShopService.getAllOrders());
 	}
 	
-	@PostMapping("/product/add")
-	public ResponseEntity<List> createProduct(@RequestBody Product product) {
-//		public ResponseEntity<List> createProduct(@RequestBody String name, Double price,  String category) {
-		// TODO problem med raden ovan, kolla upp hur @RequestBody eller annat ska användas här
-		System.out.println(product.getName());
-		System.out.println(product.getPrice());
-		System.out.println(product.getCategory());
-		productService.createProduct(product);
-		return ResponseEntity.accepted().body(productService.getAllProducts());
-	}
+//	@PostMapping("/product/add")
+//	public ResponseEntity<List> createProduct(@RequestBody Product product) {
+//		productService.createProduct(product);
+//		return ResponseEntity.accepted().body(productService.getAllProducts());
+//	}
 	
 //	@PostMapping("/body")
 //	public ResponseEntity<List> guessFeedbackPairBody(@RequestBody String guess) {
