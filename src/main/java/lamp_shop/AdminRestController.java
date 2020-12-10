@@ -25,13 +25,13 @@ public class AdminRestController {
 	AdminService adminService;
 	
 	@GetMapping("/completed")
-	public ResponseEntity<Stream> findCompletedOrders() {
+	public ResponseEntity<List<Order>> findCompletedOrders() {
 		return ResponseEntity.accepted().body(adminService.findCompletedOrders());
 	}
 	
 	@GetMapping("/not-completed")
-	public ResponseEntity<Stream> findNotCompletedOrders() {
-		return ResponseEntity.accepted().body(adminService.findNotCompletedOrders());
+	public ResponseEntity<List<Order>> findNotCompletedOrders() {
+		return ResponseEntity.accepted().body(adminService.findNewOrders());
 	}
 	
 	@PostMapping("/mark-as-completed/{id}") //@PathVariable {id} ?

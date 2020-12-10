@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Orders - all</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<h3>Orders</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Status</th>
+				<th>Customer</th>
+				<th>Order date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="r : ${orders}">
+				<td th:text="${r.getId()}" />
+				<td th:text="${r.isCompleted()}" />
+				<td th:text="${r.getCustomer()}" />
+				<td th:text="${r.getOrder_date()}" />
+		</tbody>
+	</table>
+	
+</body>
+
+</html>

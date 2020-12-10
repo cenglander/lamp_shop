@@ -2,6 +2,7 @@ package lamp_shop;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,17 @@ public class AdminService {
 		return orders;
 	}
 	
-	public Stream<Order> findCompletedOrders() {
+	public List<Order> findCompletedOrders() {
 		List<Order> orders = findAllOrders();
-		Stream<Order> completedOrders = orders.stream()
-				.filter(o -> o.isCompleted());
+		List<Order> completedOrders = orders.stream()
+				.filter(o -> o.isCompleted()).collect(Collectors.toList());;
 		return completedOrders;
 	}
 	
-	public Stream<Order> findNotCompletedOrders() {
+	public List<Order> findNewOrders() {
 		List<Order> orders = findAllOrders();
-		Stream<Order> notCompletedOrders = orders.stream()
-				.filter(o -> !o.isCompleted());
+		List<Order> notCompletedOrders = orders.stream()
+				.filter(o -> !o.isCompleted()).collect(Collectors.toList());
 		return notCompletedOrders;
 	}
 	
@@ -47,8 +48,15 @@ public class AdminService {
 		}
 	}
 	
-	public void createProduct(Product product) {
-		productRepository.save(product);
+	public boolean createProduct(Product product) {
+		
+		try {
+			productRepository.save(product);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public List<Product> getAllProducts(){
