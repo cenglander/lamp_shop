@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

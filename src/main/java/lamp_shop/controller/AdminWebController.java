@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import lamp_shop.model.Order;
+import lamp_shop.model.Product;
+import lamp_shop.service.AdminService;
 
 @Controller
 @RequestMapping("/admin/web")
@@ -83,5 +87,4 @@ public class AdminWebController {
 		} //TODO else 
 		return "admin-order";
 	}
-
 }

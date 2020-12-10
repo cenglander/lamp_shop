@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.model;
 
 import org.springframework.web.context.annotation.SessionScope;
 

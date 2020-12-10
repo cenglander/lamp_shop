@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import lamp_shop.model.Order;
+import lamp_shop.model.Product;
+import lamp_shop.service.AdminService;
 
 @RestController
 @RequestMapping("/admin/rest")
