@@ -21,7 +21,6 @@
 		<tbody>
 			<tr th:each="r : ${orders}">
 				<td th:text="${r.getId()}" />
-
 				<td th:text="${r.isCompleted()}" />
 				<td th:text="${r.getCustomer()}" />
 				<td th:text="${r.getOrder_date()}" />

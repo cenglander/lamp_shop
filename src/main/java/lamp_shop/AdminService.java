@@ -17,6 +17,9 @@ public class AdminService {
 	@Autowired
 	ProductRepository productRepository;
 	
+	@Autowired
+	CategoryRepository categoryRepository;
+	
 	public List<Order> findAllOrders() {
 		List<Order> orders = orderRepository.findAll();
 		return orders;
@@ -48,8 +51,11 @@ public class AdminService {
 		}
 	}
 	
+	public List<Category> getCategories() {
+		return categoryRepository.findAll();
+	}
+	
 	public boolean createProduct(Product product) {
-		
 		try {
 			productRepository.save(product);
 			return true;

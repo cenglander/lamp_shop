@@ -42,6 +42,7 @@ public class AdminWebController {
 
 	@GetMapping("/products/create")
 	public String getProductForm(Model m) {
+		m.addAttribute("categories", adminService.getCategories());
 		m.addAttribute("product", new Product());
 		return "add-product-form";
 	}
