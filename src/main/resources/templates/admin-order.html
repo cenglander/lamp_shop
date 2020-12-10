@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Order</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<h3>Order - #
+		<span th:text="${order.getId()}"></span>
+	</h3>	
+		<table>
+		<tbody>
+			<tr>
+				<th><label>Completed: </label></th>
+				<td th:text="${order.isCompleted()}" />
+			</tr>
+			<tr>
+				<th><label>Customer id: </label></th>
+				<td th:text="${order.getCustomer().getId()}" />
+			</tr>
+			<tr>
+				<th><label>Customer name: </label></th>
+				<td th:text="${order.getCustomer().getName()}" />
+			</tr>
+			<tr>
+				<th><label>Customer e-mail: </label></th>
+				<td th:text="${order.getCustomer().getEmail()}" />
+			</tr>
+			<tr>
+				<th><label>Order date: </label></th>
+				<td th:text="${order.getOrder_date()}" />
+			</tr>
+			<tr>
+				<th><label>Order lines: </label></th>
+				<td th:text="${order.getOrderLines()}" />
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
