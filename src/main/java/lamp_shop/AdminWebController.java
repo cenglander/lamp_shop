@@ -67,19 +67,21 @@ public class AdminWebController {
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
 			Order order = optOrder.get();
-			System.out.println(order);
-			System.out.println(order.getId());
 			m.addAttribute("order", order);
-		}
+		}//TODO else 
 		return "admin-order";
 	}
 	
-//	@PostMapping("/orders/{id}")
-//	public String markAsCompleted(Model m) {
-//		
-//		adminService.markOrderAsCompleted(id));
-//		return "admin-orders-new";
-//	}
-	
+	@PostMapping("/orders/{id}")
+	public String markAsCompleted(@PathVariable("id") int id, Model m) {
+//	public String markAsCompleted(@PathVariable("id") int id, @ModelAttribute("order") Order order, Model m) {
+		adminService.markOrderAsCompleted(id);
+		Optional<Order> optOrder = adminService.findOrderById(id);
+		if(optOrder.isPresent()) {
+			Order order = optOrder.get();
+			m.addAttribute("order", order);
+		} //TODO else 
+		return "admin-order";
+	}
 
 }
