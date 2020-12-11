@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+<div th:fragment="customer-menu">
+<a href="/web/products">Products</a>&nbsp;
+<a href="/web/shopping-cart">Shopping cart</a>&nbsp;
+<a href="/web/login">Login</a>
+<a href="/web/categories">Categories</a>
+</div>
+<div th:fragment="admin-menu">
+<a href="/admin/web/orders/new">New orders</a>&nbsp;
+<a href="/admin/web/orders/completed">Completed orders</a>&nbsp;
+<a href="/admin/web/orders/all">All orders</a>&nbsp;
+<a href="/admin/web/products/create">Create product</a>&nbsp;
+<a href="/admin/web/products">Products</a>&nbsp;
+</div>
+<div th:fragment="footer">
+<p align="center">Web shop created by Mikael Sondell and Charlotte Englander</p>
+</div>
+<!--   <div th:fragment="categories">
+ <p th:each="cat : ${categories}">
+<a th:href="'/web/category/' + ${cat.getId()}" th:text="${cat.getName()}"></a>
+</p>
+</div>
+-->
+
+</body>
+</html>

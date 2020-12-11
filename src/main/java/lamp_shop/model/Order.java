@@ -2,6 +2,7 @@ package lamp_shop.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,20 +24,19 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO
 	private int id;
-	
+
 	private LocalDateTime order_date;
 
 	private boolean completed;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer", nullable = false)
-	private User customer;	
-	
+	private User customer;
+
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_id", nullable = false)
 	private List<OrderLine> orderLines = new ArrayList<>();
 
-	
 	public void addOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
 	}
@@ -81,10 +81,23 @@ public class Order {
 		return orderLines;
 	}
 
+	public double getTotalAmount() {
+		double total = 0;
+		Iterator<OrderLine> iterator = orderLines.iterator(); 
+		while(iterator.hasNext()) {
+			OrderLine orderLine = (OrderLine) iterator.next();
+			total +=(orderLine.getQuantity() * orderLine.getProduct().getPrice());
+		}
+		return total;
+	}
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", order_date=" + order_date + ", completed=" + completed + ", customer=" + customer
 				+ ", orderLines=" + orderLines + "]";
 	}
 	
+
+	
+
 }

@@ -45,6 +45,10 @@
 				<th><label>Order lines: </label></th>
 				<td th:text="${order.getOrderLines()}" />
 			</tr>
+				<tr>
+				<th><label>Total: </label></th>
+				<td th:text="${order.getTotalAmount()}" />
+			</tr>
 		</tbody>
 	</table>
 </body>

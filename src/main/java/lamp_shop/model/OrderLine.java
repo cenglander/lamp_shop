@@ -48,7 +48,9 @@ public class OrderLine {
 
 	@Override
 	public String toString() {
-		return "OrderLine [id=" + id + ", quantity=" + quantity + "]";
+		return "OrderLine [id=" + id + ", quantity=" + quantity + ", product=" + product + "]";
 	}
+
+
 
 }
