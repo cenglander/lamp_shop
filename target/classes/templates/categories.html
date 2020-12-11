@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Categories</title>
+	<meta charset="ISO-8859-1">
+	<title>Categories</title>
 </head>
 <body>
-<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
+	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
 
-<p th:each="cat : ${categories}">
-<a th:href="'/web/category/' + ${cat.getId()}" th:text="${cat.getName()}"></a>
-</p>
+	<p th:each="cat : ${categories}">
+		<a th:href="'/web/category/' + ${cat.getId()}" th:text="${cat.getName()}"></a>
+	</p>
 
-<div th:replace="fragments/menus :: footer" >footer</div>
+	<div th:replace="fragments/menus :: footer" >footer</div>
 
 </body>
 </html>

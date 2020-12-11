@@ -3,12 +3,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Orders - Not completed</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Orders - New</title>
 </head>
 
 <body>
-	<h3>Orders - Not completed</h3>
+	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
+	
+	<h3>Orders - New</h3>
 	<table>
 		<thead>
 			<tr>
@@ -33,7 +35,9 @@
 			</tr>
 		</tbody>
 	</table>
-
+	
+	<div th:replace="fragments/menus :: footer" >footer</div>
+	
 </body>
 
 </html>

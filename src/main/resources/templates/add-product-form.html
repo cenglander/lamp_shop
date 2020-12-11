@@ -2,31 +2,44 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Add product</title>
+</head>
 
-  <body>
+<body>
+  
+	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
+
   	<h1>Add product</h1>
   	<form action="#" th:action="@{/admin/web/products/create}" th:object="${product}" method="post">
-  	   <p>Name: <input type="text" th:field="*{name}" required /> </p>
+		<p>Name: 
+  	   		<input type="text" th:field="*{name}" required />
+  	   	</p>
 
-  	   <label>Category:
-	  	   <select name="category" required th:field="*{category}">
+  	   	<label>Category:
+	    	<select name="category" required th:field="*{category}">
 	  	   		<!-- <option th:value="category" style="display:none">Choose category</option> -->
 	  	   		<!-- <option th:value="0" th:disabled th:selected>Choose category</option> -->  	   		
 	  	   		<option th:each="category : ${categories}" th:text="${category.getName()}" th:value="${category.getId()}"></option>
-	  	   </select>
-  	   </label>
+	  	   	</select>
+  	   	</label>
   	   
-  	   <p>Price: <input type="number" th:field="*{price}" required /> </p>
-  	   <p><input type="submit" value="Add" /> </p>
-  	   <p><input type="reset" value="Reset" /></p>
+  	   	<p>Price:
+  	   		<input type="number" th:field="*{price}" required />
+  	   	</p>
+  	   	<p>
+  	   		<input type="submit" value="Add" />
+  	   	</p>
+  	   	<p>
+  	   		<input type="reset" value="Reset" />
+	   	</p>
   	</form>
     <br/>
-    Product has been added: <span th:text="${name}"></span>
+    <p>Product has been added: <span th:text="${name}"></span></p>
     <p th:text="${errorMessage}"></p>
-   
-  </body>
+    
+	<div th:replace="fragments/menus :: footer" >footer</div>
+</body>
 
 </html>

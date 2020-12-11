@@ -8,9 +8,7 @@
 </head>
 
 <body>
-
-<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
-
+	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
 
 	<h3>Product List</h3>
 	<table>
@@ -27,12 +25,12 @@
 				<td th:text="${r.getId()}" />
 				<td th:text="${r.getName()}" />
 				<td th:text="${r.getPrice()}" />
-				<td th:text="${r.getCategory()}" />
+				<td th:text="${r.getCategory().getName()}" />
 			</tr>
 		</tbody>
 	</table>
 	
-<div th:replace="fragments/menus :: footer" >footer</div>
+	<div th:replace="fragments/menus :: footer" >footer</div>
 </body>
 
 </html>

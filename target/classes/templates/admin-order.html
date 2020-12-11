@@ -3,12 +3,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Order</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Order</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-
+	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
+	
 	<h3>Order - #
 		<span th:text="${order.getId()}"></span>
 	</h3>	
@@ -51,6 +52,8 @@
 			</tr>
 		</tbody>
 	</table>
+
+	<div th:replace="fragments/menus :: footer" >footer</div>
 </body>
 
 </html>

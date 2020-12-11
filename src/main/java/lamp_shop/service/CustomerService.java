@@ -31,5 +31,8 @@ public class CustomerService {
 	public List<Product> getProductsByCategory(Category category){
 		return productRepository.findByCategory(category);
 	}
+	public Category getCategoryById(int id) {
+		return categoryRepository.findById(id);
+	}
 	
 }

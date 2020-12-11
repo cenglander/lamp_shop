@@ -18,9 +18,6 @@ public class CustomerWebController {
 	@Autowired
 	CustomerService customerService;
 	
-	@Autowired
-	CategoryRepository categoryRepository;
-	
 	@GetMapping("/products")
 	public String getAllProducts(Model m) {
 		m.addAttribute("products", customerService.getAllProducts());
@@ -29,7 +26,7 @@ public class CustomerWebController {
 	
 	@GetMapping("/category/{id}")
 	public String getCategories(@PathVariable("id") int id, Model m) {
-	Category category=categoryRepository.findById(id);
+	Category category = customerService.getCategoryById(id);
 	m.addAttribute("products", customerService.getProductsByCategory(category));
 		return "products-of-category";
 	
