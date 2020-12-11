@@ -1,9 +1,11 @@
-package lamp_shop;
+package lamp_shop.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +18,19 @@ public class Product {
 
 	private String name;
 
-	private double price;
+	private Double price;
 
-	private String category; // TODO enum?
+	@ManyToOne
+	@JoinColumn(name="category", nullable=false)
+	private Category category; 
+
+	public Product() { }
+	
+	public Product(String name, Double price, Category category) {
+		this.name = name;
+		this.price = price;
+		this.category = category;
+	}
 
 	public int getId() {
 		return id;
@@ -36,25 +48,25 @@ public class Product {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + "]";
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category.getName() + "]";
 	}
 
 }

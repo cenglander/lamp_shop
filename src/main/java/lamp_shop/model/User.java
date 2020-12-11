@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,6 @@ public class User {
 	private int id;
 	
 	private String name;
-	
 	private String email;
 	
 	private String role; //TODO enum?

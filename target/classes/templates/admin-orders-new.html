@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Orders - New</title>
+</head>
+
+<body>
+	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
+	
+	<h3>Orders - New</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Status</th>
+				<th>Customer id</th>
+				<th>Customer e-mail</th>
+				<th>Order date</th>
+				<th>Order specification</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="r : ${orders}">
+				<td th:text="${r.getId()}" />
+				<td th:text="${r.isCompleted()}" />
+				<td th:text="${r.getCustomer().getId()}" />
+				<td th:text="${r.getCustomer().getEmail()}" />
+				<td th:text="${r.getOrder_date()}" />
+				<td>
+					<a th:href="'/admin/web/orders/' + ${r.getId()}">Go to order</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div th:replace="fragments/menus :: footer" >footer</div>
+	
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package lamp_shop;
+package lamp_shop.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,9 +16,8 @@ public class OrderLine {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO ska det vara identity eller auto?
 	private int id;
-
 	private int quantity;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product", nullable = false)
 	private Product product;
@@ -38,7 +37,7 @@ public class OrderLine {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public Product getProduct() {
 		return product;
 	}
@@ -49,7 +48,9 @@ public class OrderLine {
 
 	@Override
 	public String toString() {
-		return "OrderLine [id=" + id + ", quantity=" + quantity + "]";
+		return "OrderLine [id=" + id + ", quantity=" + quantity + ", product=" + product + "]";
 	}
+
+
 
 }
