@@ -1,6 +1,5 @@
 package lamp_shop.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,8 +69,7 @@ public class AdminWebController {
 	public String getOrder(@PathVariable("id") int id, Model m) {
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
-			Order order = optOrder.get();
-			m.addAttribute("order", order);
+			m.addAttribute("order", optOrder.get());
 		}//TODO else 
 		return "admin-order";
 	}
@@ -82,8 +80,7 @@ public class AdminWebController {
 		adminService.markOrderAsCompleted(id);
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
-			Order order = optOrder.get();
-			m.addAttribute("order", order);
+			m.addAttribute("order", optOrder.get());
 		} //TODO else 
 		return "admin-order";
 	}
