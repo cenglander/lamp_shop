@@ -1,6 +1,5 @@
-package lamp_shop;
+package lamp_shop.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import lamp_shop.model.Order;
+import lamp_shop.model.Product;
+import lamp_shop.service.AdminService;
 
 @Controller
 @RequestMapping("/admin/web")
@@ -66,20 +69,19 @@ public class AdminWebController {
 	public String getOrder(@PathVariable("id") int id, Model m) {
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
-			Order order = optOrder.get();
-			System.out.println(order);
-			System.out.println(order.getId());
-			m.addAttribute("order", order);
-		}
+			m.addAttribute("order", optOrder.get());
+		}//TODO else 
 		return "admin-order";
 	}
 	
-//	@PostMapping("/orders/{id}")
-//	public String markAsCompleted(Model m) {
-//		
-//		adminService.markOrderAsCompleted(id));
-//		return "admin-orders-new";
-//	}
-	
-
+	@PostMapping("/orders/{id}")
+	public String markAsCompleted(@PathVariable("id") int id, Model m) {
+//	public String markAsCompleted(@PathVariable("id") int id, @ModelAttribute("order") Order order, Model m) {
+		adminService.markOrderAsCompleted(id);
+		Optional<Order> optOrder = adminService.findOrderById(id);
+		if(optOrder.isPresent()) {
+			m.addAttribute("order", optOrder.get());
+		} //TODO else 
+		return "admin-order";
+	}
 }
