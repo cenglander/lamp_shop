@@ -46,13 +46,22 @@ public class CustomerService {
 	
 	public boolean loginCustomer(User cust) {
 		User customer = userRepository.findOneByName(cust.getName());
-		if (cust.getPassword().equals(customer.getPassword())) {
+		if (customer!=null && cust.getPassword().equals(customer.getPassword())) {
 			isLoggedIn = true;
 			return true;
 		} else {
 			isLoggedIn = false;
 			return false;
 		}
+	}
+	public boolean registerCustomer(User customer) {
+		try {
+			customer.setRole("customer");
+			userRepository.save(customer);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 }

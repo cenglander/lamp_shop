@@ -17,13 +17,13 @@
   	   		<input type="text" th:field="*{name}" required />
   	   	</p>
 
-  	   	<label>Category:
-	    	<select name="category" required th:field="*{category}">
+  	   	<label>Category:</label>
+	    	<select id="category" required th:field="*{category}">
 	  	   		<!-- <option th:value="category" style="display:none">Choose category</option> -->
-	  	   		<!-- <option th:value="0" th:disabled th:selected>Choose category</option> -->  	   		
+	  	   		<!-- <option th:value="sel" th:disabled th:selected>Choose category</option> -->  	   		
 	  	   		<option th:each="category : ${categories}" th:text="${category.getName()}" th:value="${category.getId()}"></option>
 	  	   	</select>
-  	   	</label>
+  	   	
   	   
   	   	<p>Price:
   	   		<input type="number" th:field="*{price}" required />

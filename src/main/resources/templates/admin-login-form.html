@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+</head>
+
+<body>
+
+	
+	<h3>Login</h3>
+	
+	<h5 th:text="${errorMsg}"></h5>
+	<form action='#' th:action="@{/admin/web/login}" th:object="${admin}" method="post">
+		<label>Name:
+			<input type="text" th:field="*{name}" required /> 
+		</label>
+		<label>Password:
+			<input type="password" th:field="*{password}" required /> 
+		</label>
+		<input type="submit" value="Login" />
+	</form>
+	
+	<div th:replace="fragments/menus :: footer" >footer</div>
+
+</body>
+
+</html>

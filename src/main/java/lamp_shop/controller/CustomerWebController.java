@@ -56,4 +56,18 @@ public class CustomerWebController {
 		}
 	}
 	
+	@GetMapping("/register")
+	public String registerForm(Model m) {
+		m.addAttribute("customer", new User());
+		return "register-form";
+	}
+	@PostMapping("/register")
+	public String acceptRegistrationForm(@ModelAttribute("customer") User customer, Model m) {
+		if (customerService.registerCustomer(customer)) {
+			return "redirect:/web/categories";
+		} else {
+			m.addAttribute("errorMsg", "Invalid username. Try again.");
+			return "register-form";
+		}
+	}
 }
