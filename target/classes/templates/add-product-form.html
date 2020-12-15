@@ -11,7 +11,7 @@
   
 	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
 
-  	<h1>Add product</h1>
+  	<h3>Add product</h3>
   	<form action="#" th:action="@{/admin/web/products/create}" th:object="${product}" method="post">
 		<p>Name: 
   	   		<input type="text" th:field="*{name}" required />

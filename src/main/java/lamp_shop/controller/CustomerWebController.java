@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lamp_shop.model.Category;
+import lamp_shop.model.User;
 import lamp_shop.repositories.CategoryRepository;
 import lamp_shop.service.CustomerService;
 
@@ -26,17 +29,31 @@ public class CustomerWebController {
 	
 	@GetMapping("/category/{id}")
 	public String getCategories(@PathVariable("id") int id, Model m) {
-	Category category = customerService.getCategoryById(id);
-	m.addAttribute("products", customerService.getProductsByCategory(category));
-		return "products-of-category";
-	
+		Category category = customerService.getCategoryById(id);
+		m.addAttribute("products", customerService.getProductsByCategory(category));
+		return "products-of-category";	
 	}
 	
 	@GetMapping("/categories")
 	public String getCategories(Model m) {
-	m.addAttribute("categories", customerService.getCategories());
+		m.addAttribute("categories", customerService.getCategories());
 		return "categories";
+	}
 	
+	@GetMapping("/login")
+	public String loginForm(Model m) {
+		m.addAttribute("customer", new User());
+		return "login-form";
+	}
+	
+	@PostMapping("/login")
+	public String acceptForm(@ModelAttribute("customer") User customer, Model m) {
+		if (customerService.loginCustomer(customer)) {
+			return "redirect:/web/categories";
+		} else {
+			m.addAttribute("errorMsg", "Wrong username or password. Try again or register.");
+			return "login-form";
+		}
 	}
 	
 }
