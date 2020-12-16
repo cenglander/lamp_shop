@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lamp_shop.model.Category;
 import lamp_shop.model.User;
-import lamp_shop.repositories.CategoryRepository;
 import lamp_shop.service.CustomerService;
 
 @Controller
@@ -61,6 +60,7 @@ public class CustomerWebController {
 		m.addAttribute("customer", new User());
 		return "register-form";
 	}
+	
 	@PostMapping("/register")
 	public String acceptRegistrationForm(@ModelAttribute("customer") User customer, Model m) {
 		if (customerService.registerCustomer(customer)) {

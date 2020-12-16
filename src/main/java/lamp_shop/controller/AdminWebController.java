@@ -59,7 +59,6 @@ public class AdminWebController {
 			m.addAttribute("errorMsg", "Invalid username or password. Try again.");
 			return "admin-login-form";
 		}
-		
 	}
 
 	@GetMapping("/products/create")
@@ -81,8 +80,6 @@ public class AdminWebController {
 		return "add-product-form";
 //		return "redirect:/admin/web/products/create";
 	}
-	
-	
 	
 	@GetMapping("/orders/{id}")
 	public String getOrder(@PathVariable("id") int id, Model m) {

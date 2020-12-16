@@ -22,7 +22,6 @@
 					<!--  <button type="button" th:onclick="|window.location.href='/admin/web/orders/' + ${order.getId()|">Mark as completed</button> -->
 					<form action="#" th:action="@{'/admin/web/orders/{id}' (id=${order.getId()})}" th:method="post">
 						<button type="submit">Mark as completed</button>
-					
 					</form>
 				</td>
 			</tr>

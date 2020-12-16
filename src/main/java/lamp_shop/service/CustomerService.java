@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lamp_shop.model.Cart;
 import lamp_shop.model.Category;
 import lamp_shop.model.Product;
 import lamp_shop.model.User;
@@ -47,6 +48,7 @@ public class CustomerService {
 	public boolean loginCustomer(User cust) {
 		User customer = userRepository.findOneByName(cust.getName());
 		if (customer!=null && cust.getPassword().equals(customer.getPassword())) {
+			Cart cart = new Cart(customer);
 			isLoggedIn = true;
 			return true;
 		} else {

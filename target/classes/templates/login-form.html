@@ -11,7 +11,7 @@
 	
 	<h3>Login</h3>
 	
-	<h5 th:text="${errorMsg}"></h5>
+	<h5 th:field="${errorMsg}"></h5>
 	<form action='#' th:action="@{/web/login}" th:object="${customer}" method="post">
 		<label>Name:
 			<input type="text" th:field="*{name}" required /> 

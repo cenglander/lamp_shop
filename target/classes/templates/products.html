@@ -18,14 +18,21 @@
 				<th>Name</th>
 				<th>Price</th>
 				<th>Category</th>
+				<th>Purchase</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="r : ${products}">
-				<td th:text="${r.getId()}" />
-				<td th:text="${r.getName()}" />
-				<td th:text="${r.getPrice()}" />
-				<td th:text="${r.getCategory().getName()}" />
+			<tr th:each="product : ${products}">
+				<td th:text="${product.getId()}" />
+				<td th:text="${product.getName()}" />
+				<td th:text="${product.getPrice()}" />
+				<td th:text="${product.getCategory().getName()}" />
+				<td>
+					<!--  <form action="#" th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}" th:method="post"> -->
+					<form action="#" th:action="@{/web/cart/add}" th:method="post">
+						<button type="submit">Add to cart</button>
+					</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>
