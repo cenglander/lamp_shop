@@ -2,23 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1">
+	<link href="../../static/styles/styles.css" rel="stylesheet" />
 </head>
 
 <body>
-	<div th:fragment="customer-menu">
-		<a href="/web/products">Products</a>&nbsp;
-		<a href="/web/cart/mycart">Shopping cart</a>&nbsp;
-		<a href="/web/login">Login</a>
-		<a href="/web/categories">Categories</a>
+	<div th:fragment="customer-menu" class="nav">
+		<a href="/web/products">Products</a>&nbsp; - &nbsp;
+		<a href="/web/categories">Categories</a>&nbsp; - &nbsp;
+		<a href="/web/cart/mycart">Shopping cart</a>&nbsp; - &nbsp;
+		<a href="/web/login">Login</a>&nbsp;/&nbsp;
+		<a href="/web/register">Register</a>
+		
 	</div>
-	<div th:fragment="admin-menu">
-		<a href="/admin/web/orders/new">New orders</a>&nbsp;
-		<a href="/admin/web/orders/completed">Completed orders</a>&nbsp;
-		<a href="/admin/web/orders/all">All orders</a>&nbsp;
-		<a href="/admin/web/products/create">Create product</a>&nbsp;
-		<a href="/admin/web/products">Products</a>&nbsp;
+	<div th:fragment="admin-menu" class="nav">
+		<a href="/admin/web/orders/new">New orders</a>&nbsp;&nbsp; - &nbsp;
+		<a href="/admin/web/orders/completed">Completed orders</a>&nbsp; - &nbsp;
+		<a href="/admin/web/orders/all">All orders</a>&nbsp; - &nbsp;
+		<a href="/admin/web/products/create">Create product</a>&nbsp; - &nbsp;
+		<a href="/admin/web/products">Products</a>
 	</div>
-	<div th:fragment="footer">
+	<div th:fragment="footer" class="footer">
 		<p align="center">Web shop created by Mikael Sondell and Charlotte Englander</p>
 	</div>
 	<!-- <div th:fragment="categories">
