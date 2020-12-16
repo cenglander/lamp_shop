@@ -3,12 +3,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Products</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Products</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
-	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
+	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
 	<h3>Product List</h3>
 	<table>
@@ -28,16 +28,18 @@
 				<td th:text="${product.getPrice()}" />
 				<td th:text="${product.getCategory().getName()}" />
 				<td>
-					<!--  <form action="#" th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}" th:method="post"> -->
-					<form action="#" th:action="@{/web/cart/add}" th:method="post">
+					<form action="#"
+						th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
+						th:method="post">
+						<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
 						<button type="submit">Add to cart</button>
 					</form>
 				</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<div th:replace="fragments/menus :: footer" >footer</div>
+
+	<div th:replace="fragments/menus :: footer">footer</div>
 </body>
 
 </html>

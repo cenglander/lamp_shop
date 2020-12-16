@@ -10,29 +10,32 @@
 <body>
 	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
-	<h3>Product List</h3>
+	<h3>Cart</h3>
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
+				
 				<th>Name</th>
 				<th>Price</th>
-				<th>Category</th>
-				<th>Purchase</th>
+				<th>Quantity</th>
+				<th>Increase</th>
+				<th>Decrease</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="product : ${products}">
-				<td th:text="${product.getId()}" />
-				<td th:text="${product.getName()}" />
-				<td th:text="${product.getPrice()}" />
-				<td th:text="${product.getCategory().getName()}" />
+			<tr th:each="orderline : ${orderLines}">
+				<td th:text="${orderline.getProduct().getName()}" />
+				<td th:text="${orderline.getProduct().getPrice()}" />
+				<td th:text="${orderline.getQuantity()}" />
+				
+				<td th:text="${orderline.getQuantity()}" />
+				<td th:text="${orderline.getQuantity()}" />
 				<td>
 					<form action="#"
-						th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
+						th:action="@{'/web/cart/add/{id}' (id=${orderline.getId()})}"
 						th:method="post">
 						<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
-						<button type="submit">Add to cart</button>
+						<button type="submit">Checkout cart</button>
 					</form>
 				</td>
 			</tr>

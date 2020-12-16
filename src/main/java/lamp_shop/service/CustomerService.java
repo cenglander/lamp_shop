@@ -1,6 +1,7 @@
 package lamp_shop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import lamp_shop.repositories.UserRepository;
 public class CustomerService {
 	
 	private boolean isLoggedIn;
+	private Cart cart;
 	
 	@Autowired
 	OrderRepository orderRepository;
@@ -32,9 +34,13 @@ public class CustomerService {
 	@Autowired
 	UserRepository userRepository;
 	
+	public Product getProductById(int id) {
+		return productRepository.findOneById(id);
+	}
 	public List<Category> getCategories() {
 		return categoryRepository.findAll();
 	}
+	
 	public List<Product> getAllProducts(){
 		return productRepository.findAll();
 	}
@@ -48,7 +54,8 @@ public class CustomerService {
 	public boolean loginCustomer(User cust) {
 		User customer = userRepository.findOneByName(cust.getName());
 		if (customer!=null && cust.getPassword().equals(customer.getPassword())) {
-			Cart cart = new Cart(customer);
+			System.out.println("Customer=" + customer);
+			cart=new Cart(customer);
 			isLoggedIn = true;
 			return true;
 		} else {
@@ -66,4 +73,11 @@ public class CustomerService {
 		return true;
 	}
 	
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 }

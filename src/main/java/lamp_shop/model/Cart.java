@@ -14,12 +14,11 @@ public class Cart {
 	
 	public Cart(User customer) {
 		this.customer = customer;
-		orderLines = new ArrayList<>();
 	}
 
 	private User customer; 
 	
-	private List<OrderLine> orderLines;
+	private List<OrderLine> orderLines=new ArrayList<>();
 	
 	public boolean addToCart(Product product) {
 		OrderLine orderLine = new OrderLine();
