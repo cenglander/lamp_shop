@@ -1,5 +1,6 @@
 package lamp_shop.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lamp_shop.model.Cart;
+import lamp_shop.model.OrderLine;
 import lamp_shop.model.Product;
 import lamp_shop.service.CustomerService;
 
@@ -38,8 +40,10 @@ public class CartController {
 	
 	@GetMapping("/mycart")
 	public String showCart(Model m) {
+//		m.addAttribute("cart", customerService.getCart());
 		m.addAttribute("orderLines", customerService.getCart().getOrderLines());
 		return "cart";
 	}
+	
 	
 }

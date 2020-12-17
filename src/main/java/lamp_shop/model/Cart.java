@@ -57,7 +57,7 @@ public class Cart {
 	public String toString() {
 		return "Cart [customer=" + customer + ", orderLines=" + orderLines + "]";
 	}
-	
+
 	
 //	add to cart
 //	remove from cart
@@ -66,7 +66,8 @@ public class Cart {
 //	orderline total
 //	cart total
 	
-	
+
+
 	
 	
 	

@@ -26,21 +26,19 @@
 			<tr th:each="orderline : ${orderLines}">
 				<td th:text="${orderline.getProduct().getName()}" />
 				<td th:text="${orderline.getProduct().getPrice()}" />
-				<td th:text="${orderline.getQuantity()}" />
+				<td th:text="${orderline.getQuantity()}"></td>
 				
 				<td th:text="${orderline.getQuantity()}" />
 				<td th:text="${orderline.getQuantity()}" />
-				<td>
-					<form action="#"
-						th:action="@{'/web/cart/add/{id}' (id=${orderline.getId()})}"
-						th:method="post">
-						<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
-						<button type="submit">Checkout cart</button>
-					</form>
-				</td>
+				
 			</tr>
 		</tbody>
 	</table>
+	<!-- <form action="#"
+		th:action="@{'/web/cart/add/{id}' (id=${orderline.getId()})}" - fel adress
+		th:method="post">
+		<button type="submit">Checkout cart</button>
+	</form> -->
 
 	<div th:replace="fragments/menus :: footer">footer</div>
 </body>
