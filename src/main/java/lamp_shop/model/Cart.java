@@ -10,25 +10,30 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 public class Cart {
 
-	public Cart() {}
-	
+	public Cart() {
+	}
+
 	public Cart(User customer) {
 		this.customer = customer;
 	}
 
-	private User customer; 
-	
-	private List<OrderLine> orderLines=new ArrayList<>();
-	
+	private User customer;
+
+	private List<OrderLine> orderLines = new ArrayList<>();
+
 	public boolean addToCart(Product product) {
+		for (OrderLine orderLine : orderLines) {
+			if(orderLine.getProduct().getId()==product.getId()) {
+				increaseQuantity(product.getId());
+				return true;
+			}
+		}
 		OrderLine orderLine = new OrderLine();
 		orderLine.setProduct(product);
+
 		orderLine.setQuantity(1);
-		System.out.println(product);
 		try {
-			System.out.println(orderLine);
 			orderLines.add(orderLine);
-			System.out.println(orderLines);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,18 +63,34 @@ public class Cart {
 		return "Cart [customer=" + customer + ", orderLines=" + orderLines + "]";
 	}
 
-	
+	public void increaseQuantity(int productId) {
+		for (OrderLine orderLine : orderLines) {
+			if (orderLine.getProduct().getId() == productId) {
+				orderLine.setQuantity(orderLine.getQuantity() + 1);
+				break;
+			}
+		}
+	}
+
+	public void decreaseQuantity(int productId) {
+		for (int i = 0; i < orderLines.size(); i++) {
+			OrderLine orderline = orderLines.get(i);
+			if (orderline.getProduct().getId() == productId) {
+				orderline.setQuantity(orderline.getQuantity() - 1);
+				if (orderline.getQuantity() < 1) {
+					orderLines.remove(i);
+				}
+				break;
+			}
+		}
+
+	}
+
 //	add to cart
 //	remove from cart
 //	increase quantity
 //	decrease quantity
 //	orderline total
 //	cart total
-	
 
-
-	
-	
-	
-	
 }

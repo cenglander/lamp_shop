@@ -3,6 +3,8 @@ package lamp_shop.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +33,25 @@ public class CartController {
 	}
 	
 	@PostMapping("/add/{id}")
-	public String addToCart(@PathVariable("id") int id,  Model m) {
+	public String addToCart(@PathVariable("id") int id,  Model m, HttpServletRequest request) {
 		Product product=customerService.getProductById(id);
 		customerService.getCart().addToCart(product);
 		System.out.println(customerService.getCart());
-		return "products";
+		String referer = request.getHeader("Referer");
+	    return "redirect:"+ referer;
+	}
+	@GetMapping("/increase/{id}")
+	public String increaseQuantity(@PathVariable("id") int productId, Model m) {
+		customerService.getCart().increaseQuantity(productId);
+		return "redirect:/web/cart/mycart";
+		
+	}
+	
+	@GetMapping("/decrease/{id}")
+	public String decreaseQuantity(@PathVariable("id") int productId, Model m) {
+		customerService.getCart().decreaseQuantity(productId);
+		return "redirect:/web/cart/mycart";
+		
 	}
 	
 	@GetMapping("/mycart")

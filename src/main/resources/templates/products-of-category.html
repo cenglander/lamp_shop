@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Categories</title>
+<meta charset="ISO-8859-1">
+<title>Categories</title>
 </head>
 <body>
-	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
+	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 	<table>
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Name</th>
 				<th>Price</th>
+				<th>&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="r : ${products}">
-				<td th:text="${r.getId()}" />
-				<td th:text="${r.getName()}" />
-				<td th:text="${r.getPrice()}" />
+			<tr th:each="product : ${products}">
+				<td th:text="${product.getId()}" />
+				<td th:text="${product.getName()}" />
+				<td th:text="${product.getPrice()}" />
+				<td>
+					<form action="#"
+						th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
+						th:method="post">
+						<button type="submit">Add to cart</button>
+					</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<div th:replace="fragments/menus :: footer" >footer</div>
+	<div th:replace="fragments/menus :: footer">footer</div>
 </body>
 </html>
