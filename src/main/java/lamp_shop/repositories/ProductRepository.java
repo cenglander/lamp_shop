@@ -8,5 +8,9 @@ import lamp_shop.model.Category;
 import lamp_shop.model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-public List<Product> findByCategory(Category category);
+
+	public List<Product> findByCategory(Category category);
+	public Product findOneById(int id);
+	public List<Product> findByNameIgnoreCaseContaining(String name);
+	
 }

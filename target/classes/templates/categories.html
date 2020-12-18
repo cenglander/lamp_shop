@@ -3,15 +3,23 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Categories</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 <body>
-	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
+<div class="wrapper">
+	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
-	<p th:each="cat : ${categories}">
-		<a th:href="'/web/category/' + ${cat.getId()}" th:text="${cat.getName()}"></a>
-	</p>
+	<h3>Categories</h3>
 
-	<div th:replace="fragments/menus :: footer" >footer</div>
-
+	<div class="centralize">
+		<h4 th:each="cat : ${categories}">
+			<a th:href="'/web/category/' + ${cat.getId()}"
+				th:text="${cat.getName()}"></a>
+		</h4>
+	</div>
+	
+	<div th:replace="fragments/menus :: search-bar">search bar</div>
+	<div th:replace="fragments/menus :: footer">footer</div>
+</div>
 </body>
 </html>

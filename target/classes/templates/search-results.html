@@ -12,9 +12,10 @@
 	<div class="wrapper">
 		<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
-		<h3>Product List</h3>
+		<h3>Product search results</h3>
 
 		<div th:replace="fragments/menus :: search-bar">search bar</div>
+
 		<table>
 			<thead>
 				<tr>
@@ -35,14 +36,12 @@
 						<form action="#"
 							th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
 							th:method="post">
-							<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
 							<button type="submit">Add to cart</button>
 						</form>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-
 		<div th:replace="fragments/menus :: footer">footer</div>
 	</div>
 </body>

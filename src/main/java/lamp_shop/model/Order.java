@@ -33,9 +33,18 @@ public class Order {
 	@JoinColumn(name = "customer", nullable = false)
 	private User customer;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_id", nullable = false)
 	private List<OrderLine> orderLines = new ArrayList<>();
+	
+	public Order(User customer, List<OrderLine> orderLines) {
+		this.customer = customer;
+		this.orderLines = orderLines;
+		this.completed = false;
+		this.order_date = LocalDateTime.now();
+	}
+	
+	public Order () {}
 
 	public void addOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);

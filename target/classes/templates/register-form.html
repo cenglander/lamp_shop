@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registrate user</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="wrapper">
+	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
+
+		<div class="centralize">
+		  	<form action="#" th:action="@{/web/register}" th:object="${customer}" method="post">
+
+			<h3>Register</h3>
+			<p>Name: 
+				<input type="text" th:field="*{name}" required />
+			</p>
+			<p>Email: 
+				<input type="text" th:field="*{email}" required />
+			</p>
+			<p>Password: 
+				<input type="password" th:field="*{password}" required />
+			</p>
+		
+			<h5 th:text="${errorMsg}" class="error"></h5>
+		
+			<p>
+				<input type="submit" value="Add" />
+			</p>
+			<p>
+				<input type="reset" value="Reset" />
+			</p>
+		</form>
+	</div>
+	<div th:replace="fragments/menus :: footer">footer</div>
+</div>
+</body>
+
+</html>

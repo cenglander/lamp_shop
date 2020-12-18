@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lamp_shop.model.Order;
 import lamp_shop.model.Product;
+import lamp_shop.model.User;
 import lamp_shop.service.AdminService;
 
 @Controller
@@ -43,6 +44,21 @@ public class AdminWebController {
 	public String getCompletedOrders(Model m) {
 		m.addAttribute("orders", adminService.findCompletedOrders());
 		return "admin-orders-completed";
+	}
+	
+	@GetMapping("/login")
+	public String getForm(Model m) {
+		m.addAttribute("admin",new User());
+		return "admin-login-form";
+	}
+	@PostMapping("/login")
+	public String acceptForm(@ModelAttribute("admin") User admin, Model m) {
+		if (adminService.loginAdmin(admin)) {
+			return "redirect:/admin/web/orders/all";
+		} else {
+			m.addAttribute("errorMsg", "Invalid username or password. Try again.");
+			return "admin-login-form";
+		}
 	}
 
 	@GetMapping("/products/create")

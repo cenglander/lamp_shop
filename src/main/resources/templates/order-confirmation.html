@@ -3,27 +3,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Order</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Order</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
-	<div th:replace="fragments/menus :: admin-menu" >customer menu</div>
+<div class="wrapper">
+	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
 	
-	<h3>Order - #
-		<span th:text="${order.getId()}"></span>
-	</h3>	
+	<h3>Your order has been accepted</h3>	
 		<table>
 		<tbody>
 			<tr>
-				<th><label>Completed: </label></th>
-				<td th:text="${order.isCompleted()}" />
-				<td>
-					<!--  <button type="button" th:onclick="|window.location.href='/admin/web/orders/' + ${order.getId()|">Mark as completed</button> -->
-					<form action="#" th:action="@{'/admin/web/orders/{id}' (id=${order.getId()})}" th:method="post">
-						<button type="submit">Mark as completed</button>
-					</form>
-				</td>
+				<th><label>Order id: </label></th>
+				<td th:text="${order.getId()}" />
 			</tr>
 			<tr>
 				<th><label>Customer id: </label></th>
@@ -45,7 +39,7 @@
 				<th><label>Order lines: </label></th>
 				<td th:text="${order.getOrderLines()}" />
 			</tr>
-				<tr>
+			<tr>
 				<th><label>Total: </label></th>
 				<td th:text="${order.getTotalAmount()}" />
 			</tr>
@@ -53,6 +47,7 @@
 	</table>
 
 	<div th:replace="fragments/menus :: footer" >footer</div>
+</div>
 </body>
 
 </html>
