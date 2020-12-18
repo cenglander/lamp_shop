@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import lamp_shop.model.Cart;
 import lamp_shop.model.Category;
+import lamp_shop.model.Order;
+import lamp_shop.model.OrderLine;
 import lamp_shop.model.Product;
 import lamp_shop.model.User;
 import lamp_shop.repositories.CategoryRepository;
@@ -73,11 +75,22 @@ public class CustomerService {
 		return true;
 	}
 	
+	public Order placeOrder() {
+		User customer = getCart().getCustomer();
+		List<OrderLine> orderLines = getCart().getOrderLines();
+		Order order = new Order(customer, orderLines);
+		orderRepository.save(order);
+		return order;
+	}
+	
 	public Cart getCart() {
 		return cart;
 	}
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+	public List<Product> findProductsByName(String name) {
+		return productRepository.findByName(name);		
 	}
 }

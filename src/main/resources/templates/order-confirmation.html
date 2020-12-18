@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Order</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
+	
+	<h3>Your order has been accepted</h3>	
+		<table>
+		<tbody>
+			<tr>
+				<th><label>Order id: </label></th>
+				<td th:text="${order.getId()}" />
+			</tr>
+			<tr>
+				<th><label>Customer id: </label></th>
+				<td th:text="${order.getCustomer().getId()}" />
+			</tr>
+			<tr>
+				<th><label>Customer name: </label></th>
+				<td th:text="${order.getCustomer().getName()}" />
+			</tr>
+			<tr>
+				<th><label>Customer e-mail: </label></th>
+				<td th:text="${order.getCustomer().getEmail()}" />
+			</tr>
+			<tr>
+				<th><label>Order date: </label></th>
+				<td th:text="${order.getOrder_date()}" />
+			</tr>
+			<tr>
+				<th><label>Order lines: </label></th>
+				<td th:text="${order.getOrderLines()}" />
+			</tr>
+			<tr>
+				<th><label>Total: </label></th>
+				<td th:text="${order.getTotalAmount()}" />
+			</tr>
+		</tbody>
+	</table>
+
+	<div th:replace="fragments/menus :: footer" >footer</div>
+</body>
+
+</html>

@@ -3,11 +3,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Products</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Products</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
 	<h3>Cart</h3>
@@ -27,20 +29,23 @@
 				<td th:text="${orderline.getProduct().getName()}" />
 				<td th:text="${orderline.getProduct().getPrice()}" />
 				<td th:text="${orderline.getQuantity()}"></td>
-				<td><a
-					th:href="@{/web/cart/increase/{id} (id=${orderline.getProduct().getId()})}">+</a></td>
-				<td><a
-					th:href="@{/web/cart/decrease/{id} (id=${orderline.getProduct().getId()})}">-</a></td>
+				<td>
+					<a th:href="@{/web/cart/increase/{id} (id=${orderline.getProduct().getId()})}">+</a>
+				</td>
+				<td>
+					<a th:href="@{/web/cart/decrease/{id} (id=${orderline.getProduct().getId()})}">-</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-	<!-- <form action="#"
-		th:action="@{'/web/cart/add/{id}' (id=${orderline.getId()})}" - fel adress
-		th:method="post">
+	<label>Total amount: </label>
+	<p th:text="${total}" />
+	<form action="#" th:action="@{/web/order}" th:method="post">
 		<button type="submit">Checkout cart</button>
-	</form> -->
+	</form>
 
 	<div th:replace="fragments/menus :: footer">footer</div>
+</div>
 </body>
 
 </html>

@@ -40,26 +40,29 @@ public class CartController {
 		String referer = request.getHeader("Referer");
 	    return "redirect:"+ referer;
 	}
+	
 	@GetMapping("/increase/{id}")
 	public String increaseQuantity(@PathVariable("id") int productId, Model m) {
 		customerService.getCart().increaseQuantity(productId);
-		return "redirect:/web/cart/mycart";
-		
+		return "redirect:/web/cart/mycart";	
 	}
 	
 	@GetMapping("/decrease/{id}")
 	public String decreaseQuantity(@PathVariable("id") int productId, Model m) {
 		customerService.getCart().decreaseQuantity(productId);
 		return "redirect:/web/cart/mycart";
-		
 	}
 	
 	@GetMapping("/mycart")
 	public String showCart(Model m) {
 //		m.addAttribute("cart", customerService.getCart());
 		m.addAttribute("orderLines", customerService.getCart().getOrderLines());
+		m.addAttribute("total", customerService.getCart().getCartTotal());
 		return "cart";
 	}
+	
+	
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 package lamp_shop.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -84,6 +85,16 @@ public class Cart {
 			}
 		}
 
+	}
+
+	public double getCartTotal() {
+		double total = 0;
+		Iterator<OrderLine> iterator = orderLines.iterator(); 
+		while(iterator.hasNext()) {
+			OrderLine orderLine = (OrderLine) iterator.next();
+			total +=(orderLine.getQuantity() * orderLine.getProduct().getPrice());
+		}
+		return total;
 	}
 
 //	add to cart

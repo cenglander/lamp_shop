@@ -1,5 +1,7 @@
 package lamp_shop.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lamp_shop.model.Category;
+import lamp_shop.model.Order;
+import lamp_shop.model.Product;
 import lamp_shop.model.User;
 import lamp_shop.service.CustomerService;
 
@@ -70,4 +74,28 @@ public class CustomerWebController {
 			return "register-form";
 		}
 	}
+	
+	@PostMapping("/order")
+	public String acceptOrder(Model m) {
+		Order order = customerService.placeOrder();		
+		m.addAttribute("order", order);	
+		return "order-confirmation";
+	}
+//TODO	
+//	@PostMapping("/search")
+//	public String acceptSearch(@ModelAttribute("product") Product product, Model m) {
+//		
+//		String name = product.getName();
+//		product.setName(name);
+//		m.addAttribute("name", name);
+////		m.addAttribute("product", new Product(name));
+//		System.out.println("From input field: " + name);
+//		
+//		List<Product> products = customerService.findProductsByName(name);
+//		
+//		m.addAttribute("products", products);
+//		return "search-results";
+//	}
+	
+
 }
