@@ -1,7 +1,8 @@
 body {
 	padding: 0;
 	margin: 0;
-	background: #694463;
+	/*background: #694463;*/
+	background: #E7E5E5;
 }
 .wrapper {
 	margin: 0 auto;
@@ -35,6 +36,12 @@ body {
 	display: flex;
 	justify-content: space-around;
 	text-transform: uppercase;
+}
+.centralize p, label {
+	text-transform: none;
+}
+#block {
+	display: block;
 }
 .error {
 	color: red;

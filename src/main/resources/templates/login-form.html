@@ -14,16 +14,18 @@
 	
 	<h3>Login</h3>
 	
-	<h5 th:field="${errorMsg}" class="error"></h5>
-	<form action='#' th:action="@{/web/login}" th:object="${customer}" method="post">
-		<label>Name:
-			<input type="text" th:field="*{name}" required /> 
-		</label>
-		<label>Password:
-			<input type="password" th:field="*{password}" required /> 
-		</label>
-		<input type="submit" value="Login" />
-	</form>
+	<div class="centralize" id="block">
+		<h5 th:text="${errorMsg}" class="error"></h5>
+		<form action='#' th:action="@{/web/login}" th:object="${customer}" method="post">
+			<label>Name:
+				<input type="text" th:field="*{name}" required /> 
+			</label>
+			<label>Password:
+				<input type="password" th:field="*{password}" required /> 
+			</label>
+			<input type="submit" value="Login" />
+		</form>
+	</div>
 	
 	<div th:replace="fragments/menus :: footer" >footer</div>
 </div>

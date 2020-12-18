@@ -61,6 +61,7 @@ public class CustomerService {
 			isLoggedIn = true;
 			return true;
 		} else {
+			System.out.println("Customer is null");
 			isLoggedIn = false;
 			return false;
 		}
@@ -83,6 +84,10 @@ public class CustomerService {
 		return order;
 	}
 	
+	public List<Product> findProductsByName(String name) {
+		return productRepository.findByNameIgnoreCaseContaining(name);		
+	}
+	
 	public Cart getCart() {
 		return cart;
 	}
@@ -90,7 +95,11 @@ public class CustomerService {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	public List<Product> findProductsByName(String name) {
-		return productRepository.findByNameIgnoreCaseContaining(name);		
+	public boolean isLoggedIn() {
+		return isLoggedIn;
 	}
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
+	}
+	
 }
