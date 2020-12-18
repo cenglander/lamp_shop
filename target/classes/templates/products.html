@@ -3,57 +3,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Products</title>
-	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Products</title>
+<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
-<div class="wrapper">
-	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
+	<div class="wrapper">
+		<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
-	<h3>Product List</h3>
-	
-	<!--  
-	<div>			
-		<form action="#" th:action="@{/web/search}" method="post" th:object="${product}">
-			<label>Search by product name:</label>
-			<input th:field="*{name}" type="text" />
-			<input type="submit" th:text="Search" />
-		</form>
+		<h3>Product List</h3>
+
+		<div th:replace="fragments/menus :: search-bar">search bar</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Category</th>
+					<th>Purchase</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${product.getId()}" />
+					<td th:text="${product.getName()}" />
+					<td th:text="${product.getPrice()}" />
+					<td th:text="${product.getCategory().getName()}" />
+					<td>
+						<form action="#"
+							th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
+							th:method="post">
+							<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
+							<button type="submit">Add to cart</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:replace="fragments/menus :: footer">footer</div>
 	</div>
-	 -->
-	
-	<table>
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Category</th>
-				<th>Purchase</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="product : ${products}">
-				<td th:text="${product.getId()}" />
-				<td th:text="${product.getName()}" />
-				<td th:text="${product.getPrice()}" />
-				<td th:text="${product.getCategory().getName()}" />
-				<td>
-					<form action="#"
-						th:action="@{'/web/cart/add/{id}' (id=${product.getId()})}"
-						th:method="post">
-						<!--	<form action="#" th:action="@{/web/cart/add}" th:method="post"> -->
-						<button type="submit">Add to cart</button>
-					</form>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<div th:replace="fragments/menus :: footer">footer</div>
-</div>
 </body>
 
 </html>

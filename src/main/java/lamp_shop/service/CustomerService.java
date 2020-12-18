@@ -91,6 +91,6 @@ public class CustomerService {
 		this.cart = cart;
 	}
 	public List<Product> findProductsByName(String name) {
-		return productRepository.findByName(name);		
+		return productRepository.findByNameIgnoreCaseContaining(name);		
 	}
 }

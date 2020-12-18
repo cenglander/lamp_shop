@@ -24,6 +24,13 @@
 	<div th:fragment="footer" class="footer">
 		<p align="center">Web shop created by Mikael Sondell and Charlotte Englander</p>
 	</div>
+	<div th:fragment="search-bar" class="search-bar">
+			<form action="#" th:action="@{/web/search}" method="post">
+				<label>Search by product name:</label> <input name="searchstring"
+					type="text" /> <input type="submit" value="Search" />
+			</form>
+		</div>
+	
 	<!-- <div th:fragment="categories">
  		<p th:each="cat : ${categories}">
 			<a th:href="'/web/category/' + ${cat.getId()}" th:text="${cat.getName()}"></a>

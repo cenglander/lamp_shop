@@ -33,6 +33,7 @@ public class CustomerWebController {
 	@GetMapping("/category/{id}")
 	public String getCategories(@PathVariable("id") int id, Model m) {
 		Category category = customerService.getCategoryById(id);
+		m.addAttribute("category",category.getName());
 		m.addAttribute("products", customerService.getProductsByCategory(category));
 		return "products-of-category";	
 	}
@@ -81,6 +82,16 @@ public class CustomerWebController {
 		m.addAttribute("order", order);	
 		return "order-confirmation";
 	}
+	
+	
+	@PostMapping("/search")
+	public String acceptSearch(@ModelAttribute("searchstring") String searchString, Model m) {
+		List<Product> products = customerService.findProductsByName(searchString);
+		m.addAttribute("products", products);
+		return "search-results";
+	}
+	
+	
 //TODO	
 //	@PostMapping("/search")
 //	public String acceptSearch(@ModelAttribute("product") Product product, Model m) {
