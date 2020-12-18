@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Categories</title>
+	<meta charset="ISO-8859-1">
+	<title th:text="${category}"></title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 <body>
-
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
+	
+	<h3 th:text="${category}"></h3>	
+	
 	<div th:replace="fragments/menus :: search-bar">search bar</div>
-	<h3 th:text="${category}">
-	</h3>	
+	
 	<table>
 		<thead>
 			<tr>
@@ -35,5 +38,6 @@
 		</tbody>
 	</table>
 	<div th:replace="fragments/menus :: footer">footer</div>
+</div>
 </body>
 </html>

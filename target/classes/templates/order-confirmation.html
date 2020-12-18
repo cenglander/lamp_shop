@@ -3,11 +3,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Order</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Order</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
 	
 	<h3>Your order has been accepted</h3>	
@@ -45,6 +47,7 @@
 	</table>
 
 	<div th:replace="fragments/menus :: footer" >footer</div>
+</div>
 </body>
 
 </html>

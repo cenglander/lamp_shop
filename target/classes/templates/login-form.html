@@ -1,17 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Login</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
 	
 	<h3>Login</h3>
 	
-	<h5 th:field="${errorMsg}"></h5>
+	<h5 th:field="${errorMsg}" class="error"></h5>
 	<form action='#' th:action="@{/web/login}" th:object="${customer}" method="post">
 		<label>Name:
 			<input type="text" th:field="*{name}" required /> 
@@ -23,7 +26,7 @@
 	</form>
 	
 	<div th:replace="fragments/menus :: footer" >footer</div>
-
+</div>
 </body>
 
 </html>

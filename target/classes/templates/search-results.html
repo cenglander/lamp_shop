@@ -3,17 +3,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Products</title>
-<link th:href="@{/styles/styles.css}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Products</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
 	<div class="wrapper">
 		<div th:replace="fragments/menus :: customer-menu">customer menu</div>
-		<div th:replace="fragments/menus :: search-bar">search bar</div>
 
 		<h3>Product search results</h3>
+
+		<div th:replace="fragments/menus :: search-bar">search bar</div>
 
 		<table>
 			<thead>
@@ -41,7 +42,6 @@
 				</tr>
 			</tbody>
 		</table>
-		<div th:replace="fragments/menus :: search-bar">search bar</div>
 		<div th:replace="fragments/menus :: footer">footer</div>
 	</div>
 </body>

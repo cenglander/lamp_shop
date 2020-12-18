@@ -4,13 +4,16 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Title of page</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
+<div class="wrapper>
+	<h3>Title of page</h3>
 	<div th:replace="fragments/menus :: customer-menu" >customer menu</div>
-
+	<div th:replace="fragments/menus :: search-bar">search bar</div>
 	<div th:replace="fragments/menus :: footer" >footer</div>
-
+</div>
 </body>
 
 </html>

@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Registrate user</title>
+	<meta charset="ISO-8859-1">
+	<title>Registrate user</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 
 <body>
-
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
 	  	<form action="#" th:action="@{/web/register}" th:object="${customer}" method="post">
@@ -23,8 +24,7 @@
 			Password: <input type="password" th:field="*{password}" required />
 		</p>
 		
-		
-		<h5 th:text="${errorMsg}"></h5>
+		<h5 th:text="${errorMsg}" class="error"></h5>
 		
 		<p>
 			<input type="submit" value="Add" />
@@ -34,7 +34,7 @@
 		</p>
 	</form>
 	<div th:replace="fragments/menus :: footer">footer</div>
-
+</div>
 </body>
 
 </html>

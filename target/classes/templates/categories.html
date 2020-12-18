@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Categories</title>
+	<meta charset="ISO-8859-1">
+	<title>Categories</title>
+	<link th:href="@{/styles/styles.css}" rel="stylesheet" />
 </head>
 <body>
-
+<div class="wrapper">
 	<div th:replace="fragments/menus :: customer-menu">customer menu</div>
 
 	<h3>Categories</h3>
-	<h5 th:each="cat : ${categories}">
-		<a th:href="'/web/category/' + ${cat.getId()}"
-			th:text="${cat.getName()}"></a>
-	</h5>
+
+	<div class="centralize">
+		<h4 th:each="cat : ${categories}">
+			<a th:href="'/web/category/' + ${cat.getId()}"
+				th:text="${cat.getName()}"></a>
+		</h4>
+	</div>
+	
 	<div th:replace="fragments/menus :: search-bar">search bar</div>
 	<div th:replace="fragments/menus :: footer">footer</div>
-
+</div>
 </body>
 </html>
