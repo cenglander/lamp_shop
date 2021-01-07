@@ -31,14 +31,12 @@ public class Cart {
 		}
 		OrderLine orderLine = new OrderLine();
 		orderLine.setProduct(product);
-
 		orderLine.setQuantity(1);
 		try {
 			orderLines.add(orderLine);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("catch - exception");
 			return false;
 		}
 	}
@@ -84,7 +82,6 @@ public class Cart {
 				break;
 			}
 		}
-
 	}
 
 	public double getCartTotal() {

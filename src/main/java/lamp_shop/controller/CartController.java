@@ -1,21 +1,15 @@
 package lamp_shop.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lamp_shop.model.Cart;
-import lamp_shop.model.OrderLine;
 import lamp_shop.model.Product;
 import lamp_shop.service.CustomerService;
 
@@ -60,9 +54,5 @@ public class CartController {
 		m.addAttribute("total", customerService.getCart().getCartTotal());
 		return "cart";
 	}
-	
-	
-	
-	
 	
 }

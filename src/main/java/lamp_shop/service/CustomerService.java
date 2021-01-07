@@ -42,7 +42,6 @@ public class CustomerService {
 	public List<Category> getCategories() {
 		return categoryRepository.findAll();
 	}
-	
 	public List<Product> getAllProducts(){
 		return productRepository.findAll();
 	}
