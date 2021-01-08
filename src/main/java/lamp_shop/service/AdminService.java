@@ -3,12 +3,9 @@ package lamp_shop.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lamp_shop.repositories.UserRepository;
-
 import lamp_shop.model.Category;
 import lamp_shop.model.Order;
 import lamp_shop.model.Product;
@@ -20,6 +17,7 @@ import lamp_shop.repositories.ProductRepository;
 @Service
 public class AdminService {
 
+	
 	@Autowired
 	OrderRepository orderRepository;
 
@@ -48,6 +46,10 @@ public class AdminService {
 		List<Order> orders = findAllOrders();
 		List<Order> notCompletedOrders = orders.stream().filter(o -> !o.isCompleted()).collect(Collectors.toList());
 		return notCompletedOrders;
+	}
+	
+	public void setOrderRepository(OrderRepository orderRepository) {
+		this.orderRepository=orderRepository;
 	}
 
 	public boolean markOrderAsCompleted(int id) {

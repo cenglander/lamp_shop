@@ -17,10 +17,24 @@ public class OrderLine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO ska det vara identity eller auto?
 	private int id;
 	private int quantity;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product", nullable = false)
 	private Product product;
+
+	public OrderLine() {
+	}
+
+	/**
+	 * @param id
+	 * @param quantity
+	 * @param product
+	 */
+	public OrderLine(int id, int quantity, Product product) {
+		this.id = id;
+		this.quantity = quantity;
+		this.product = product;
+	}
+
 
 	public int getId() {
 		return id;
