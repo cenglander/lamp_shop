@@ -94,11 +94,4 @@ public class Cart {
 		return total;
 	}
 
-//	add to cart
-//	remove from cart
-//	increase quantity
-//	decrease quantity
-//	orderline total
-//	cart total
-
 }

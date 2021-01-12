@@ -30,7 +30,6 @@ public class CartController {
 	public String addToCart(@PathVariable("id") int id,  Model m, HttpServletRequest request) {
 		Product product=customerService.getProductById(id);
 		customerService.getCart().addToCart(product);
-		System.out.println(customerService.getCart());
 		String referer = request.getHeader("Referer");
 	    return "redirect:"+ referer;
 	}

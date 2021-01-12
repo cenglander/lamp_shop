@@ -1,12 +1,10 @@
 package lamp_shop.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import lamp_shop.model.Cart;
@@ -86,8 +84,14 @@ public class CustomerService {
 		User customer = getCart().getCustomer();
 		List<OrderLine> orderLines = getCart().getOrderLines();
 		Order order = new Order(customer, orderLines);
-		orderRepository.save(order);
-		emailServiceImpl.sendSimpleMessage();
+		
+		order = orderRepository.save(order);
+		
+		String email = customer.getEmail();
+		int orderId = order.getId();
+		
+		
+		emailServiceImpl.sendMessage(email, orderId, orderLines);
 		return order;
 	}
 	
