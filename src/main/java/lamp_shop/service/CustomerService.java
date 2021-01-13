@@ -96,7 +96,7 @@ public class CustomerService {
 	}
 	
 	public List<Product> findProductsByName(String name) {
-		return productRepository.findByNameIgnoreCaseContaining(name);		
+		return productRepository.findByNameIgnoreCase(name);		
 	}
 	
 	public Cart getCart() {

@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.util.ReflectionTestUtils;
+
 import lamp_shop.model.Category;
 import lamp_shop.model.Order;
 import lamp_shop.model.OrderLine;
@@ -56,7 +58,8 @@ class AdminServiceTest {
 		order3.setCompleted(true);
 		order4.setCompleted(true);
 		when(mockOrderRepository.findAll()).thenReturn(Arrays.asList(order1, order2, order3, order4));
-		adminService.setOrderRepository(mockOrderRepository);//Peka mot mocken
+//		adminService.setOrderRepository(mockOrderRepository);//Peka mot mocken
+		ReflectionTestUtils.setField(adminService, "orderRepository", mockOrderRepository);
 	}
 	
 	@Test

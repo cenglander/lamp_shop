@@ -75,12 +75,17 @@ public class CustomerWebController {
 			return "register-form";
 		}
 	}
-	
 	@PostMapping("/order")
 	public String acceptOrder(Model m) {
 		Order order = customerService.placeOrder();		
 		m.addAttribute("order", order);	
 		return "order-confirmation";
+	}
+	
+	@GetMapping("/search")
+	public String showSearchForm( Model m) {
+		
+		return "search-results";
 	}
 	
 	

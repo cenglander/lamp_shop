@@ -60,7 +60,11 @@ public class AdminWebController {
 			return "admin-login-form";
 		}
 	}
-
+	@GetMapping("/products")
+	public String getAllProducts(Model m) {
+		m.addAttribute("products", adminService.getAllProducts());
+		return "admin-products" ;
+	}
 	@GetMapping("/products/create")
 	public String getProductForm(Model m) {
 		m.addAttribute("categories", adminService.getCategories());

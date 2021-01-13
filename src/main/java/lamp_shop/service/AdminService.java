@@ -19,7 +19,7 @@ public class AdminService {
 
 	
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 
 	@Autowired
 	ProductRepository productRepository;
@@ -48,9 +48,10 @@ public class AdminService {
 		return notCompletedOrders;
 	}
 	
-	public void setOrderRepository(OrderRepository orderRepository) {
-		this.orderRepository=orderRepository;
-	}
+//	public void setOrderRepository(OrderRepository orderRepository) {
+//		this.orderRepository=orderRepository;
+//	}
+	
 
 	public boolean markOrderAsCompleted(int id) {
 		Optional<Order> order = orderRepository.findById(id);
