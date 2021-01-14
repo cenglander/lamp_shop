@@ -47,7 +47,6 @@ public class AdminWebController {
 	@GetMapping("/login")
 	public String getForm(Model m) {
 		m.addAttribute("admin", new User());
-		
 		return "admin-login-form";
 	}
 	@PostMapping("/login")
@@ -93,7 +92,7 @@ public class AdminWebController {
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
 			m.addAttribute("order", optOrder.get());
-		}//TODO else 
+		}
 		return template;
 	}
 	
@@ -104,7 +103,7 @@ public class AdminWebController {
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
 			m.addAttribute("order", optOrder.get());
-		} //TODO else 
+		} 
 		return template;
 	}
 	

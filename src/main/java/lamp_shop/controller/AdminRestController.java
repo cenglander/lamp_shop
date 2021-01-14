@@ -21,9 +21,6 @@ import lamp_shop.service.AdminService;
 @RequestMapping("/admin/rest")
 public class AdminRestController {
 
-//	@Autowired
-//	ProductService productService;
-	
 	@Autowired
 	AdminService adminService;
 	
@@ -37,7 +34,7 @@ public class AdminRestController {
 		return ResponseEntity.accepted().body(adminService.findNewOrders());
 	}
 	
-	@PostMapping("/mark-as-completed/{id}") //@PathVariable {id} ?
+	@PostMapping("/mark-as-completed/{id}") 
 	public ResponseEntity<Optional<Order>> markOrderAsCompleted(@PathVariable int id) {
 		if (adminService.markOrderAsCompleted(id)) {
 			return ResponseEntity.accepted().body(adminService.findOrderById(id));
@@ -46,6 +43,7 @@ public class AdminRestController {
 		}
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@PostMapping("/product/add")
 	public ResponseEntity<List> createProduct(@RequestBody Product product) {
 		adminService.createProduct(product);

@@ -23,33 +23,33 @@ public class CustomerWebController {
 
 	@Autowired
 	CustomerService customerService;
-	
+
 	@GetMapping("/products")
 	public String getAllProducts(Model m) {
 		m.addAttribute("products", customerService.getAllProducts());
-		return "products" ;
+		return "products";
 	}
-	
+
 	@GetMapping("/category/{id}")
 	public String getCategories(@PathVariable("id") int id, Model m) {
 		Category category = customerService.getCategoryById(id);
-		m.addAttribute("category",category.getName());
+		m.addAttribute("category", category.getName());
 		m.addAttribute("products", customerService.getProductsByCategory(category));
-		return "products-of-category";	
+		return "products-of-category";
 	}
-	
+
 	@GetMapping("/categories")
 	public String getCategories(Model m) {
 		m.addAttribute("categories", customerService.getCategories());
 		return "categories";
 	}
-	
+
 	@GetMapping("/login")
 	public String loginForm(Model m) {
 		m.addAttribute("customer", new User());
 		return "login-form";
 	}
-	
+
 	@PostMapping("/login")
 	public String acceptForm(@ModelAttribute("customer") User customer, Model m) {
 		if (customerService.loginCustomer(customer)) {
@@ -59,13 +59,13 @@ public class CustomerWebController {
 			return "login-form";
 		}
 	}
-	
+
 	@GetMapping("/register")
 	public String registerForm(Model m) {
 		m.addAttribute("customer", new User());
 		return "register-form";
 	}
-	
+
 	@PostMapping("/register")
 	public String acceptRegistrationForm(@ModelAttribute("customer") User customer, Model m) {
 		if (customerService.registerCustomer(customer)) {
@@ -75,50 +75,24 @@ public class CustomerWebController {
 			return "register-form";
 		}
 	}
+
 	@PostMapping("/order")
 	public String acceptOrder(Model m) {
-		Order order = customerService.placeOrder();		
-		m.addAttribute("order", order);	
+		Order order = customerService.placeOrder();
+		m.addAttribute("order", order);
 		return "order-confirmation";
 	}
-	
+
 	@GetMapping("/search")
-	public String showSearchForm( Model m) {
-		
+	public String showSearchForm(Model m) {
+
 		return "search-results";
 	}
-	
-	
+
 	@PostMapping("/search")
 	public String acceptSearch(@ModelAttribute("searchstring") String searchString, Model m) {
 		List<Product> products = customerService.findProductsByName(searchString);
 		m.addAttribute("products", products);
 		return "search-results";
 	}
-	
-	public String handleNotLoggedIn(String template) {
-		if (!customerService.isLoggedIn()) {		
-			return "redirect:/web/login";
-		} else {
-			return template;
-		}
-	}
-	
-//TODO	
-//	@PostMapping("/search")
-//	public String acceptSearch(@ModelAttribute("product") Product product, Model m) {
-//		
-//		String name = product.getName();
-//		product.setName(name);
-//		m.addAttribute("name", name);
-////		m.addAttribute("product", new Product(name));
-//		System.out.println("From input field: " + name);
-//		
-//		List<Product> products = customerService.findProductsByName(name);
-//		
-//		m.addAttribute("products", products);
-//		return "search-results";
-//	}
-	
-
 }

@@ -36,7 +36,7 @@ public class CustomerService {
 	UserRepository userRepository;
 	
 	@Autowired
-	EmailServiceImpl emailServiceImpl;
+	EmailService emailServiceImplAlternative2;
 	
 	
 	public Product getProductById(int id) {
@@ -88,9 +88,7 @@ public class CustomerService {
 		
 		String email = customer.getEmail();
 		int orderId = order.getId();
-		
-		
-		emailServiceImpl.sendMessage(email, orderId, orderLines);
+		emailServiceImplAlternative2.sendMessage(email, orderId, orderLines);
 		return order;
 	}
 	
