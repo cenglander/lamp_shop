@@ -96,6 +96,13 @@ public class CustomerWebController {
 		return "search-results";
 	}
 	
+	public String handleNotLoggedIn(String template) {
+		if (!customerService.isLoggedIn()) {		
+			return "redirect:/web/login";
+		} else {
+			return template;
+		}
+	}
 	
 //TODO	
 //	@PostMapping("/search")

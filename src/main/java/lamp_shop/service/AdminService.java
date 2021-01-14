@@ -17,6 +17,7 @@ import lamp_shop.repositories.ProductRepository;
 @Service
 public class AdminService {
 
+	private boolean isLoggedIn;
 	
 	@Autowired
 	private OrderRepository orderRepository;
@@ -91,9 +92,18 @@ public class AdminService {
 		User adminStored = userRepository.findOneByName(admin.getName());
 		if (adminStored != null && admin.getPassword().equals(adminStored.getPassword())
 				&& adminStored.getRole().equalsIgnoreCase("admin")) {
+			isLoggedIn = true;
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
 	}
 
 }

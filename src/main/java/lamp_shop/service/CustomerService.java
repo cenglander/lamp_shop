@@ -1,8 +1,6 @@
 package lamp_shop.service;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +59,7 @@ public class CustomerService {
 		User customer = userRepository.findOneByName(cust.getName());
 		if (customer!=null && cust.getPassword().equals(customer.getPassword())) {
 			System.out.println("Customer=" + customer);
-			cart=new Cart(customer);
+			cart = new Cart(customer);
 			isLoggedIn = true;
 			return true;
 		} else {
@@ -70,6 +68,7 @@ public class CustomerService {
 			return false;
 		}
 	}
+	
 	public boolean registerCustomer(User customer) {
 		try {
 			customer.setRole("customer");

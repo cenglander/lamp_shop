@@ -22,16 +22,20 @@ public class CartController {
 	
 	@GetMapping("/add")
 	public String getButton(Model m) {
+		String template = handleNotLoggedIn("products");
 		m.addAttribute("product", new Product());
-		return "products";
+		return template;
 	}
 	
 	@PostMapping("/add/{id}")
 	public String addToCart(@PathVariable("id") int id,  Model m, HttpServletRequest request) {
 		Product product=customerService.getProductById(id);
-		customerService.getCart().addToCart(product);
 		String referer = request.getHeader("Referer");
-	    return "redirect:"+ referer;
+		String template = handleNotLoggedIn("redirect:"+ referer);
+		if (template.equals("redirect:"+ referer)) {
+			customerService.getCart().addToCart(product);
+		}
+	    return template;
 	}
 	
 	@GetMapping("/increase/{id}")
@@ -48,10 +52,20 @@ public class CartController {
 	
 	@GetMapping("/mycart")
 	public String showCart(Model m) {
-//		m.addAttribute("cart", customerService.getCart());
-		m.addAttribute("orderLines", customerService.getCart().getOrderLines());
-		m.addAttribute("total", customerService.getCart().getCartTotal());
-		return "cart";
+		String template = handleNotLoggedIn("cart");
+		if (template.equals("cart")) {
+			m.addAttribute("orderLines", customerService.getCart().getOrderLines());
+			m.addAttribute("total", customerService.getCart().getCartTotal());
+		}
+		return template;
+	}
+	
+	public String handleNotLoggedIn(String template) {
+		if (!customerService.isLoggedIn()) {		
+			return "redirect:/web/login";
+		} else {
+			return template;
+		}
 	}
 	
 }
