@@ -19,38 +19,37 @@ import lamp_shop.service.AdminService;
 @Controller
 @RequestMapping("/admin/web")
 public class AdminWebController {
+	
 	@Autowired
 	AdminService adminService;
 
 	@GetMapping("/orders/all")
 	public String getAllOrders(Model m) {
+		String template = handleNotLoggedIn("admin-orders");
 		m.addAttribute("orders", adminService.findAllOrders());
-		return "admin-orders";
-	}
+		return template;
+	}	
 
 	@GetMapping("/orders/new")
 	public String getNewOrders(Model m) {
+		String template = handleNotLoggedIn("admin-orders-new");
 		m.addAttribute("orders", adminService.findNewOrders());
-		return "admin-orders-new";
+		return template;
 	}
-//	@PostMapping("/orders/new")
-//	public String markAsCompleted(@ModelAttribute("orders") List<Order> orders, Model m) {
-//		
-//		adminService.markOrderAsCompleted());
-//		return "admin-orders-new";
-//	}
 
 	@GetMapping("/orders/completed")
 	public String getCompletedOrders(Model m) {
+		String template = handleNotLoggedIn("admin-orders-completed");
 		m.addAttribute("orders", adminService.findCompletedOrders());
-		return "admin-orders-completed";
+		return template;
 	}
 	
 	@GetMapping("/login")
 	public String getForm(Model m) {
-		m.addAttribute("admin",new User());
+		m.addAttribute("admin", new User());
 		return "admin-login-form";
 	}
+	
 	@PostMapping("/login")
 	public String acceptForm(@ModelAttribute("admin") User admin, Model m) {
 		if (adminService.loginAdmin(admin)) {
@@ -60,16 +59,25 @@ public class AdminWebController {
 			return "admin-login-form";
 		}
 	}
-
+	
+	@GetMapping("/products")
+	public String getAllProducts(Model m) {
+		String template = handleNotLoggedIn("admin-products");
+		m.addAttribute("products", adminService.getAllProducts());
+		return template;
+	}
+	
 	@GetMapping("/products/create")
 	public String getProductForm(Model m) {
+		String template = handleNotLoggedIn("add-product-form");
 		m.addAttribute("categories", adminService.getCategories());
 		m.addAttribute("product", new Product());
-		return "add-product-form";
+		return template;
 	}
 
 	@PostMapping("/products/create")
 	public String sendProductForm(@ModelAttribute("product") Product product, Model m) {
+		String template = handleNotLoggedIn("add-product-form");
 		if (adminService.createProduct(product)) {
 			m.addAttribute("name", product.getName());
 			m.addAttribute("categories", adminService.getCategories());
@@ -77,27 +85,36 @@ public class AdminWebController {
 		} else {
 			m.addAttribute("errorMessage","Product could not be created");
 		}
-		return "add-product-form";
-//		return "redirect:/admin/web/products/create";
+		return template;
 	}
 	
 	@GetMapping("/orders/{id}")
 	public String getOrder(@PathVariable("id") int id, Model m) {
+		String template = handleNotLoggedIn("admin-order");
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
 			m.addAttribute("order", optOrder.get());
-		}//TODO else 
-		return "admin-order";
+		}
+		return template;
 	}
 	
 	@PostMapping("/orders/{id}")
 	public String markAsCompleted(@PathVariable("id") int id, Model m) {
-//	public String markAsCompleted(@PathVariable("id") int id, @ModelAttribute("order") Order order, Model m) {
+		String template = handleNotLoggedIn("admin-order");
 		adminService.markOrderAsCompleted(id);
 		Optional<Order> optOrder = adminService.findOrderById(id);
 		if(optOrder.isPresent()) {
 			m.addAttribute("order", optOrder.get());
-		} //TODO else 
-		return "admin-order";
+		} 
+		return template;
 	}
+	
+	public String handleNotLoggedIn(String template) {
+		if (!adminService.isLoggedIn()) {		
+			return "redirect:/admin/web/login";
+		} else {
+			return template;
+		}
+	}
+	
 }

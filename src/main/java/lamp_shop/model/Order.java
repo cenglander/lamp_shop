@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +21,7 @@ import javax.persistence.Table;
 public class Order {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private LocalDateTime order_date;
@@ -37,6 +36,9 @@ public class Order {
 	@JoinColumn(name = "order_id", nullable = false)
 	private List<OrderLine> orderLines = new ArrayList<>();
 	
+	public Order () {
+	}
+	
 	public Order(User customer, List<OrderLine> orderLines) {
 		this.customer = customer;
 		this.orderLines = orderLines;
@@ -44,10 +46,19 @@ public class Order {
 		this.order_date = LocalDateTime.now();
 	}
 	
-	public Order () {}
 
 	public void addOrderLine(OrderLine orderLine) {
 		orderLines.add(orderLine);
+	}
+	
+	public double getTotalAmount() {
+		double total = 0;
+		Iterator<OrderLine> iterator = orderLines.iterator(); 
+		while(iterator.hasNext()) {
+			OrderLine orderLine = (OrderLine) iterator.next();
+			total +=(orderLine.getQuantity() * orderLine.getProduct().getPrice());
+		}
+		return total;
 	}
 
 	public int getId() {
@@ -90,23 +101,10 @@ public class Order {
 		return orderLines;
 	}
 
-	public double getTotalAmount() {
-		double total = 0;
-		Iterator<OrderLine> iterator = orderLines.iterator(); 
-		while(iterator.hasNext()) {
-			OrderLine orderLine = (OrderLine) iterator.next();
-			total +=(orderLine.getQuantity() * orderLine.getProduct().getPrice());
-		}
-		return total;
-	}
-
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", order_date=" + order_date + ", completed=" + completed + ", customer=" + customer
 				+ ", orderLines=" + orderLines + "]";
 	}
-	
-
-	
 
 }

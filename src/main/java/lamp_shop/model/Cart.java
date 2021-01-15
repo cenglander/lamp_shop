@@ -11,16 +11,16 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 public class Cart {
 
-	public Cart() {
-	}
-
-	public Cart(User customer) {
-		this.customer = customer;
-	}
-
 	private User customer;
 
 	private List<OrderLine> orderLines = new ArrayList<>();
+	
+	public Cart() {
+	}
+	
+	public Cart(User customer) {
+		this.customer = customer;
+	}
 
 	public boolean addToCart(Product product) {
 		for (OrderLine orderLine : orderLines) {
@@ -31,37 +31,14 @@ public class Cart {
 		}
 		OrderLine orderLine = new OrderLine();
 		orderLine.setProduct(product);
-
 		orderLine.setQuantity(1);
 		try {
 			orderLines.add(orderLine);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("catch - exception");
 			return false;
 		}
-	}
-
-	public User getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(User customer) {
-		this.customer = customer;
-	}
-
-	public List<OrderLine> getOrderLines() {
-		return orderLines;
-	}
-
-	public void setOrderLines(List<OrderLine> orderLines) {
-		this.orderLines = orderLines;
-	}
-
-	@Override
-	public String toString() {
-		return "Cart [customer=" + customer + ", orderLines=" + orderLines + "]";
 	}
 
 	public void increaseQuantity(int productId) {
@@ -84,7 +61,6 @@ public class Cart {
 				break;
 			}
 		}
-
 	}
 
 	public double getCartTotal() {
@@ -97,11 +73,25 @@ public class Cart {
 		return total;
 	}
 
-//	add to cart
-//	remove from cart
-//	increase quantity
-//	decrease quantity
-//	orderline total
-//	cart total
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
+	}
+
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
+	}
+
+	@Override
+	public String toString() {
+		return "Cart [customer=" + customer + ", orderLines=" + orderLines + "]";
+	}
 
 }

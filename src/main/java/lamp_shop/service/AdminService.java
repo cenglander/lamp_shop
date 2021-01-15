@@ -3,13 +3,9 @@ package lamp_shop.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lamp_shop.repositories.UserRepository;
-
 import lamp_shop.model.Category;
 import lamp_shop.model.Order;
 import lamp_shop.model.Product;
@@ -21,8 +17,10 @@ import lamp_shop.repositories.ProductRepository;
 @Service
 public class AdminService {
 
+	private boolean isLoggedIn;
+	
 	@Autowired
-	OrderRepository orderRepository;
+	private OrderRepository orderRepository;
 
 	@Autowired
 	ProductRepository productRepository;
@@ -50,6 +48,11 @@ public class AdminService {
 		List<Order> notCompletedOrders = orders.stream().filter(o -> !o.isCompleted()).collect(Collectors.toList());
 		return notCompletedOrders;
 	}
+
+//	Användes vid testning innan ReflectionTestUtils
+//	public void setOrderRepository(OrderRepository orderRepository) {
+//		this.orderRepository=orderRepository;
+//	}
 
 	public boolean markOrderAsCompleted(int id) {
 		Optional<Order> order = orderRepository.findById(id);
@@ -89,9 +92,18 @@ public class AdminService {
 		User adminStored = userRepository.findOneByName(admin.getName());
 		if (adminStored != null && admin.getPassword().equals(adminStored.getPassword())
 				&& adminStored.getRole().equalsIgnoreCase("admin")) {
+			isLoggedIn = true;
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isLoggedIn() {
+		return isLoggedIn;
+	}
+
+	public void setLoggedIn(boolean isLoggedIn) {
+		this.isLoggedIn = isLoggedIn;
 	}
 
 }

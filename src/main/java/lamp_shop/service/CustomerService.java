@@ -1,7 +1,6 @@
 package lamp_shop.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +16,11 @@ import lamp_shop.repositories.OrderRepository;
 import lamp_shop.repositories.ProductRepository;
 import lamp_shop.repositories.UserRepository;
 
-
 @Service
 public class CustomerService {
 	
 	private boolean isLoggedIn;
+	
 	private Cart cart;
 	
 	@Autowired
@@ -36,28 +35,14 @@ public class CustomerService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public Product getProductById(int id) {
-		return productRepository.findOneById(id);
-	}
-	public List<Category> getCategories() {
-		return categoryRepository.findAll();
-	}
-	
-	public List<Product> getAllProducts(){
-		return productRepository.findAll();
-	}
-	public List<Product> getProductsByCategory(Category category){
-		return productRepository.findByCategory(category);
-	}
-	public Category getCategoryById(int id) {
-		return categoryRepository.findById(id);
-	}
+	@Autowired
+	EmailService emailServiceImplAlternative2;
 	
 	public boolean loginCustomer(User cust) {
 		User customer = userRepository.findOneByName(cust.getName());
 		if (customer!=null && cust.getPassword().equals(customer.getPassword())) {
 			System.out.println("Customer=" + customer);
-			cart=new Cart(customer);
+			cart = new Cart(customer);
 			isLoggedIn = true;
 			return true;
 		} else {
@@ -66,6 +51,7 @@ public class CustomerService {
 			return false;
 		}
 	}
+	
 	public boolean registerCustomer(User customer) {
 		try {
 			customer.setRole("customer");
@@ -80,12 +66,37 @@ public class CustomerService {
 		User customer = getCart().getCustomer();
 		List<OrderLine> orderLines = getCart().getOrderLines();
 		Order order = new Order(customer, orderLines);
-		orderRepository.save(order);
+		
+		order = orderRepository.save(order);
+		
+		String email = customer.getEmail();
+		int orderId = order.getId();
+		emailServiceImplAlternative2.sendMessage(email, orderId, orderLines);
 		return order;
 	}
 	
 	public List<Product> findProductsByName(String name) {
-		return productRepository.findByNameIgnoreCaseContaining(name);		
+		return productRepository.findByNameIgnoreCase(name);		
+	}
+	
+	public Product getProductById(int id) {
+		return productRepository.findOneById(id);
+	}
+	
+	public List<Category> getCategories() {
+		return categoryRepository.findAll();
+	}
+	
+	public List<Product> getAllProducts(){
+		return productRepository.findAll();
+	}
+	
+	public List<Product> getProductsByCategory(Category category){
+		return productRepository.findByCategory(category);
+	}
+	
+	public Category getCategoryById(int id) {
+		return categoryRepository.findById(id);
 	}
 	
 	public Cart getCart() {

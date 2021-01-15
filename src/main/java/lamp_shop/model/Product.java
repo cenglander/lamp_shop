@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
@@ -24,7 +24,8 @@ public class Product {
 	@JoinColumn(name="category", nullable=false)
 	private Category category; 
 
-	public Product() { }
+	public Product() {
+	}
 	
 	public Product(String name, Double price, Category category) {
 		this.name = name;
