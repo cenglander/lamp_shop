@@ -48,11 +48,11 @@ public class AdminService {
 		List<Order> notCompletedOrders = orders.stream().filter(o -> !o.isCompleted()).collect(Collectors.toList());
 		return notCompletedOrders;
 	}
-	
+
+//	Användes vid testning innan ReflectionTestUtils
 //	public void setOrderRepository(OrderRepository orderRepository) {
 //		this.orderRepository=orderRepository;
 //	}
-	
 
 	public boolean markOrderAsCompleted(int id) {
 		Optional<Order> order = orderRepository.findById(id);

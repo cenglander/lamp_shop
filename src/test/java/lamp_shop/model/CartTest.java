@@ -86,6 +86,5 @@ class CartTest {
 		assertEquals(50, cart.getCartTotal());
 		assertNotEquals(200, cart.getCartTotal());
 	}
-
 	
 }

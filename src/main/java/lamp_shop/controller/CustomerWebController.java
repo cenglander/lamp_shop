@@ -95,4 +95,5 @@ public class CustomerWebController {
 		m.addAttribute("products", products);
 		return "search-results";
 	}
+	
 }

@@ -49,6 +49,7 @@ public class AdminWebController {
 		m.addAttribute("admin", new User());
 		return "admin-login-form";
 	}
+	
 	@PostMapping("/login")
 	public String acceptForm(@ModelAttribute("admin") User admin, Model m) {
 		if (adminService.loginAdmin(admin)) {
@@ -65,6 +66,7 @@ public class AdminWebController {
 		m.addAttribute("products", adminService.getAllProducts());
 		return template;
 	}
+	
 	@GetMapping("/products/create")
 	public String getProductForm(Model m) {
 		String template = handleNotLoggedIn("add-product-form");
@@ -114,6 +116,5 @@ public class AdminWebController {
 			return template;
 		}
 	}
-
 	
 }

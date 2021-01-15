@@ -16,6 +16,7 @@ import lamp_shop.model.OrderLine;
 import lamp_shop.model.Product;
 import lamp_shop.model.User;
 import lamp_shop.repositories.OrderRepository;
+
 class AdminServiceTest {
 	private OrderRepository mockOrderRepository;
 	private Order order1;
@@ -58,7 +59,7 @@ class AdminServiceTest {
 		order3.setCompleted(true);
 		order4.setCompleted(true);
 		when(mockOrderRepository.findAll()).thenReturn(Arrays.asList(order1, order2, order3, order4));
-//		adminService.setOrderRepository(mockOrderRepository);//Peka mot mocken
+//		adminService.setOrderRepository(mockOrderRepository); // Pekar mot mocken
 		ReflectionTestUtils.setField(adminService, "orderRepository", mockOrderRepository);
 	}
 	
@@ -69,22 +70,21 @@ class AdminServiceTest {
 		expectedOrders.add(order3);
 		expectedOrders.add(order4);
 	    assertEquals(actualOrders, expectedOrders);
-		
 	}
 
-	@Test
-	void testFindNewOrders() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMarkOrderAsCompleted() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCreateProduct() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	void testFindNewOrders() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testMarkOrderAsCompleted() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	void testCreateProduct() {
+//		fail("Not yet implemented");
+//	}
 
 }

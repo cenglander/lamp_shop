@@ -50,5 +50,4 @@ public class AdminRestController {
 		return ResponseEntity.accepted().body(adminService.getAllProducts());
 	}
 	
-	
 }

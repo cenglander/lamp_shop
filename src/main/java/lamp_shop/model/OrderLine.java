@@ -14,9 +14,11 @@ import javax.persistence.Table;
 public class OrderLine {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // TODO ska det vara identity eller auto?
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private int quantity;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product", nullable = false)
 	private Product product;
@@ -24,11 +26,6 @@ public class OrderLine {
 	public OrderLine() {
 	}
 
-	/**
-	 * @param id
-	 * @param quantity
-	 * @param product
-	 */
 	public OrderLine(int id, int quantity, Product product) {
 		this.id = id;
 		this.quantity = quantity;
@@ -64,7 +61,5 @@ public class OrderLine {
 	public String toString() {
 		return "OrderLine [id=" + id + ", quantity=" + quantity + ", product=" + product + "]";
 	}
-
-
 
 }

@@ -16,11 +16,11 @@ import lamp_shop.repositories.OrderRepository;
 import lamp_shop.repositories.ProductRepository;
 import lamp_shop.repositories.UserRepository;
 
-
 @Service
 public class CustomerService {
 	
 	private boolean isLoggedIn;
+	
 	private Cart cart;
 	
 	@Autowired
@@ -37,23 +37,6 @@ public class CustomerService {
 	
 	@Autowired
 	EmailService emailServiceImplAlternative2;
-	
-	
-	public Product getProductById(int id) {
-		return productRepository.findOneById(id);
-	}
-	public List<Category> getCategories() {
-		return categoryRepository.findAll();
-	}
-	public List<Product> getAllProducts(){
-		return productRepository.findAll();
-	}
-	public List<Product> getProductsByCategory(Category category){
-		return productRepository.findByCategory(category);
-	}
-	public Category getCategoryById(int id) {
-		return categoryRepository.findById(id);
-	}
 	
 	public boolean loginCustomer(User cust) {
 		User customer = userRepository.findOneByName(cust.getName());
@@ -94,6 +77,26 @@ public class CustomerService {
 	
 	public List<Product> findProductsByName(String name) {
 		return productRepository.findByNameIgnoreCase(name);		
+	}
+	
+	public Product getProductById(int id) {
+		return productRepository.findOneById(id);
+	}
+	
+	public List<Category> getCategories() {
+		return categoryRepository.findAll();
+	}
+	
+	public List<Product> getAllProducts(){
+		return productRepository.findAll();
+	}
+	
+	public List<Product> getProductsByCategory(Category category){
+		return productRepository.findByCategory(category);
+	}
+	
+	public Category getCategoryById(int id) {
+		return categoryRepository.findById(id);
 	}
 	
 	public Cart getCart() {

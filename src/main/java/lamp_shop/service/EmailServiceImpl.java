@@ -1,13 +1,11 @@
 package lamp_shop.service;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -50,16 +48,5 @@ public class EmailServiceImpl implements EmailService {
 	public void sendMessageWithAttachment(String to, String subject, String text, String pathToAttachment) {
 		// TODO Auto-generated method stub
 	}
-
-//    public void sendSimpleMessage(String to, List<OrderLine> orderLines) {
-//    	
-//    	SimpleMailMessage message = new SimpleMailMessage(); 
-//    	message.setFrom("lampshop.exam@gmail.com");
-////        message.setTo("charlotte.englander@gmail.com"); 
-//    	message.setTo(to); 
-//    	message.setSubject("Order confirmation"); 
-//    	message.setText("Your order is being handled. \n" + orderLines);
-//    	emailSender.send(message);   
-//    }  
 
 }
